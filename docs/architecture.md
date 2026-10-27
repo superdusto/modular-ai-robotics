@@ -1,4 +1,4 @@
-# Architecture Proposal (Not Final)
+# Architecture Proposal — Standalone Core Accepted, Details Open
 
 ## Core principle
 Separate **what an agent knows**, **what it decides**, **what its chassis can do**, and **what the server permits**.
@@ -24,6 +24,12 @@ Player intent / local observations
  Verify / checkpoint / retry
 ```
 
+## Accepted architecture constraint
+
+[ADR-0002](decisions/0002-standalone-core-optional-integrations.md) requires a fully usable standalone core with **no mandatory third-party content mods**. Our mod owns the first robot entity/chassis, autonomy controller, basic docking/energy, vanilla interactions, and a path to building/maintaining its own units. Optional mod adapters are separate execution routes, never prerequisites for loading or using core robots.
+
+A practical implementation may use optional packages within one mod or separate integration artifacts (packaging is not decided). Whichever is selected must avoid unconditional class loading or registration that requires an absent third-party mod. Generic Minecraft/NeoForge APIs may be used directly; specialized APIs must be guarded by presence/version compatibility and verified authorization. Jobs involving unavailable integrations must become blocked/replanned safely, rather than crashing, silently succeeding or consuming unaccounted cargo.
+
 ## Candidate boundaries
 1. **Identity and persistence:** Stable UUID, owner, home/dock, task checkpoints, cargo; versioned serialization and world-level indexes as needed.
 2. **Agent controller:** Select objectives, maintain priority, interrupt work, record failures, and reconcile after reload.
@@ -46,4 +52,4 @@ A task declares capability requirements (for example: navigate, item-extract, ca
 - Compare custom-entity versus player-context action semantics for block modification.
 - Verify claims/permissions on any supported action path.
 - Test inventory fault recovery and chunk-unload behavior.
-- Determine whether a standalone mod or an addon to an existing robot platform is more maintainable.
+- Verify the core runs with only Minecraft + NeoForge installed, and degrades safely when an optional adapter/mod is removed or updated.
