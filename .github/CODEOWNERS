@@ -1,6 +1,8 @@
-# Maintain decision integrity and review the policy/test code together.
-/docs/decisions/ @superdusto
-/scripts/check_decisions.py @superdusto
-/tests/test_decision_gate.py @superdusto
-/.github/workflows/decision-gate.yml @superdusto
-/.github/CODEOWNERS @superdusto
+# Ownership and review routing for decision policy, executable CI and tests.
+# Review process and enforcement limits are documented in docs/decision-gate.md.
+/docs/decisions/ @superdusto @justdustn
+/docs/decision-gate.md @superdusto @justdustn
+/scripts/ @superdusto @justdustn
+/tests/ @superdusto @justdustn
+/.github/workflows/ @superdusto @justdustn
+/.github/CODEOWNERS @superdusto @justdustn

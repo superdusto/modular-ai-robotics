@@ -14,12 +14,16 @@ jobs:
   decision-gate:
     name: decision-gate
     runs-on: ubuntu-24.04
+    timeout-minutes: 5
     steps:
       - name: Check out the repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7, verified in run 40452056114
         with:
           persist-credentials: false
-      - name: Validate every architecture decision
-        run: python3 scripts/check_decisions.py --root .
-      - name: Test the decision validator
-        run: python3 -m unittest discover -s tests -p 'test_decision_gate.py' -v
+          fetch-depth: 0
+      - name: Test the decision validator and workflow contract
+        run: python3 -B scripts/run_decision_gate_tests.py
+      - name: Validate every architecture decision and preserve history
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.merge_group.base_sha || github.event.before || github.sha }}
+        run: python3 -B scripts/check_decisions.py --root . --base-ref "$BASE_SHA"
