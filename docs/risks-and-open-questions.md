@@ -4,7 +4,8 @@
 
 | Risk / uncertainty | Potential impact | Planned response | Tracking |
 | --- | --- | --- | --- |
-| Desired robotics mod has no compatible 26.1.2 release/API | Cannot reuse that robot as a first-party embodiment | Keep standalone entity as an option; compare each mod and its exact versions | [#2](../../issues/2) |
+| Desired external mod has no compatible 26.1.2 release/API | One optional integration is unavailable | Use mod-owned entities; disable incompatible adapter without affecting core | [#2](../../issues/2) |
+| Optional mod is updated, removed or incompatible | Startup failure or stranded work if improperly coupled | Isolate optional APIs and test no-mod startup and recoverable jobs | [#2](../../issues/2) |
 | World protections treat non-player actors differently | Unexpected block/container modification | Test server authority and supported protection hooks, deny unverified actions | [#7](../../issues/7) |
 | Inventory transfer interrupted or partially accepted | Duplication, item loss, invalid work completion | Track actual moved quantities; staged checkpoints; restart reconciliation | [#6](../../issues/6), [#7](../../issues/7) |
 | Chunk unload and entity lifecycle | Task stalls, stale targets, inconsistent memory | Persist resumable state; revalidate on activation; bound chunk-loading policy | [#6](../../issues/6) |
@@ -19,9 +20,10 @@
 - Minecraft Java **26.1.2**, **NeoForge**, **JDK 25** initial target — [ADR-0001](decisions/0001-initial-platform.md).
 - Offline-first; no mandatory ChatGPT API, hosted LLM, subscription or external connection.
 - The first proving task is a persistent courier and charging dock.
+- Standalone core with optional integrations and no required third-party content mods — [ADR-0002](decisions/0002-standalone-core-optional-integrations.md).
 
 ## Still unresolved
-1. Standalone mod entities vs supported extension of another robotics system.
+1. Which optional adapters to prioritize, and whether adapters should be internal or separately packaged.
 2. Exact MDK, NeoForge, Gradle and developer environment pinning, including tests.
 3. Java license, resource/texture license, contribution policy.
 4. Robot identity ownership and migration across physical chassis.
