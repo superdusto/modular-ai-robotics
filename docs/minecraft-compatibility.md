@@ -1,6 +1,6 @@
 # Minecraft Version and Integration Research
 
-**Decision status: OPEN.** Do not assume ATM10, Minecraft 1.21.1, or the latest release is the final target.
+**Decision status: INITIAL TARGET ACCEPTED.** Minecraft Java Edition **26.1.2**, **NeoForge**, **JDK 25**. See [ADR-0001](decisions/0001-initial-platform.md). This is a development choice, not a demonstrated integration or build. Do not assume ATM10 compatibility.
 
 ## Selection criteria
 1. Stability and availability of modding APIs, Java/toolchain, mappings and documentation.
@@ -9,7 +9,7 @@
 4. Ease of isolated tests and future maintenance.
 5. One loader/version initially. Separate builds/adapters for additional platforms if later justified.
 
-## Candidate targets to compare
+## Alternatives recorded before selection
 - Minecraft 1.21.1 / NeoForge: historical compatibility ecosystem with working robotics projects.
 - Newer Minecraft / NeoForge: possibly better for greenfield code, but exact API and dependencies must be verified.
 - Fabric only if chosen integrations or developer tradeoffs justify the alternate loader.
@@ -31,5 +31,5 @@
 
 A mod's presence, release compatibility, source code, and API stability are separate claims. Version-specific compatibility needs actual test evidence.
 
-## Research tasks
-Record inspected version/tag/commit, official sources, license, required dependencies, demonstrated action semantics, and permission behavior before choosing a platform.
+## Remaining research tasks
+Verify exact toolchain versions when scaffolding, and record third-party mod versions/tags/commits, official sources, license, required dependencies, demonstrated action semantics and permissions. The initial baseline is selected; compatibility research remains open.
