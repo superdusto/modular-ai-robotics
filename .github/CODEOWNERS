@@ -1,0 +1,6 @@
+# Maintain decision integrity and review the policy/test code together.
+/docs/decisions/ @superdusto
+/scripts/check_decisions.py @superdusto
+/tests/test_decision_gate.py @superdusto
+/.github/workflows/decision-gate.yml @superdusto
+/.github/CODEOWNERS @superdusto
