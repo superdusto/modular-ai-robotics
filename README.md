@@ -101,6 +101,10 @@ The **initial** Minecraft and loader target is selected: **Minecraft Java Editio
 
 See [ADR-0001](docs/decisions/0001-initial-platform.md), [ADR-0002](docs/decisions/0002-standalone-core-optional-integrations.md), [Compatibility Research](docs/minecraft-compatibility.md), [Risks and Open Questions](docs/risks-and-open-questions.md), and the [issue tracker](https://github.com/superdusto/modular-ai-robotics/issues).
 
+## Mechanical Decision Gate
+
+Architecture decisions use a [machine-checkable ADR format](docs/decision-gate.md), validated by the [Decision Gate workflow](.github/workflows/decision-gate.yml) with automated [negative and positive tests](tests/test_decision_gate.py). The gate checks required documentation structure, scoped claim classification, evidence references, verification bookkeeping and explicit alternatives. It **cannot** prove technical claims true or replace Minecraft runtime tests and accountable review. Merge blocking additionally requires an active GitHub branch ruleset; the workflow alone is not branch protection.
+
 ## Contributing and project status
 
 Research findings, test proposals, architectural feedback, and documented compatibility evidence are welcome. Read [CONTRIBUTING.md](CONTRIBUTING.md) first. Code contributions should wait until the target platform, license, and minimal architecture are decided.
