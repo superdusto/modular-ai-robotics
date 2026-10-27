@@ -4,7 +4,7 @@
 
 Modular AI Robotics is a proposed Minecraft mod for useful, persistent robotic companions: ground robots, flying drones, humanoid machines, and eventually larger industrial mechs. Robots should be able to work alongside a player, manage resources, assist with construction and defense, and recover from interruptions—without a paid AI service or an internet connection.
 
-> **Status: Research and architecture planning.** No playable mod or prototype is available yet. The Minecraft version, mod loader, implementation plan, and software license have not been finalized.
+> **Status: Research and architecture planning.** No playable mod or prototype is available yet. The initial development target is **Minecraft Java Edition 26.1.2 + NeoForge + JDK 25** ([ADR-0001](docs/decisions/0001-initial-platform.md)). The implementation approach and software license remain open.
 
 ## Vision
 
@@ -61,7 +61,7 @@ Player orders + world observations
 
 The controller, task planner, and job definitions are intended to be independent of robot appearance. World-changing actions must be validated by server-side code, including ownership, permitted areas, resource availability, and protection-system rules where supported.
 
-More detail: [Architecture](docs/architecture.md) and [Vision](docs/vision.md).
+More detail: [Architecture](docs/architecture.md), [Vision](docs/vision.md), and [Requirements](docs/requirements.md).
 
 ## Knowledge packs and adaptation
 
@@ -87,15 +87,15 @@ The robot should:
 
 Once reliable, add a mining module and verify that the same action framework can complete a small approved mining task. A flying drone can later test the separation of controller and chassis.
 
-See the [Development Roadmap](docs/development-roadmap.md).
+See the [Development Roadmap](docs/development-roadmap.md), [Verification Plan](docs/verification-plan.md), and [Player Experience](docs/player-experience.md).
 
 ## Research before implementation
 
-The starting Minecraft version and loader are **open decisions**. The choice should weigh API stability, Java/toolchain requirements, ecosystem maturity, and compatibility with technology and automation mods—not simply the newest Minecraft release.
+The **initial** Minecraft and loader target is selected: **Minecraft Java Edition 26.1.2 + NeoForge + JDK 25**. Exact loader/build-tool pinning and third-party integrations still require verification. This project is not restricted to ATM10.
 
 We also need to evaluate **standalone machines vs. integration with existing robot mods**, including OpenComputers: Modernized, CC: Tweaked, and PneumaticCraft: Repressurized. No third-party implementation is assumed reusable without checking its API and license.
 
-See [Compatibility Research](docs/minecraft-compatibility.md) and the [issue tracker](../../issues).
+See [ADR-0001](docs/decisions/0001-initial-platform.md), [Compatibility Research](docs/minecraft-compatibility.md), [Risks and Open Questions](docs/risks-and-open-questions.md), and the [issue tracker](https://github.com/superdusto/modular-ai-robotics/issues).
 
 ## Contributing and project status
 
