@@ -30,6 +30,10 @@ Player intent / local observations
 
 A practical implementation may use optional packages within one mod or separate integration artifacts (packaging is not decided). Whichever is selected must avoid unconditional class loading or registration that requires an absent third-party mod. Generic Minecraft/NeoForge APIs may be used directly; specialized APIs must be guarded by presence/version compatibility and verified authorization. Jobs involving unavailable integrations must become blocked/replanned safely, rather than crashing, silently succeeding or consuming unaccounted cargo.
 
+## Proposed integration contract
+
+[ADR-0003](decisions/0003-capability-driven-integration-ports.md) proposes typed, versioned core operation ports; guarded mod-specific adapters; player enrollment and execution-time authorization; explicit custody/result states; and NeoForge-first integration before optional AE2 crafting. Review [the integration contract](integrations/contract.md) and [unrun test matrix](integrations/verification-matrix.md). ADR-0003 is **proposed**, not implemented or accepted; the controller/action Java API remains to be defined under Issue #3.
+
 ## Candidate boundaries
 1. **Identity and persistence:** Stable UUID, owner, home/dock, task checkpoints, cargo; versioned serialization and world-level indexes as needed.
 2. **Agent controller:** Select objectives, maintain priority, interrupt work, record failures, and reconcile after reload.
