@@ -1,6 +1,10 @@
 # Integrating Player-Built Infrastructure and Other Mods
 
-**Status:** Proposed architecture + version-specific feasibility research (2026-10-26). No mod integration has been built or tested.
+**Status:** Standalone core + optional integrations accepted as a project requirement ([ADR-0002](decisions/0002-standalone-core-optional-integrations.md)). Specific adapters are still proposed and untested.
+
+## Independence requirement
+
+The mod must work with Minecraft + NeoForge alone, owning its robots, autonomy, docking, basic work and progression. Other technology mods are optional; failed or absent adapters must not stop core gameplay. See [ADR-0002](decisions/0002-standalone-core-optional-integrations.md).
 
 ## Goal
 
@@ -104,9 +108,9 @@ This is **not necessarily a binary decision**:
 - Our mod could own the offline planner, controllers, robot chassis and core action interfaces.
 - Player-built external technology can remain intact and be controlled through optional adapters.
 - Some future third-party robots might be controlled as **external executors** via supported interfaces.
-- An addon-only approach is still worth comparing, but the base autonomy engine should not depend on a single other mod unless the evidence demonstrates that dependence is worthwhile.
+- An addon-only design is rejected; optional addons and adapters remain possible, but the core cannot depend on any third-party content mod.
 
-**No final standalone-versus-addon architecture decision is recorded here.** That evaluation remains open in [Issue #2](https://github.com/superdusto/modular-ai-robotics/issues/2).
+**Standalone-first architecture is accepted** in [ADR-0002](decisions/0002-standalone-core-optional-integrations.md). [Issue #2](https://github.com/superdusto/modular-ai-robotics/issues/2) remains open for adapter research and verification.
 
 ## Proposed tests
 
