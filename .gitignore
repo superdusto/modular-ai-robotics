@@ -1,0 +1,29 @@
+# Developer environment and build artifacts (future Java/Gradle project)
+.gradle/
+build/
+out/
+.idea/
+.vscode/
+*.iml
+*.class
+run/
+logs/
+crash-reports/
+*.log
+
+# Personal Minecraft saves and runtime configuration
+saves/
+world/
+worlds/
+usercache.json
+usernamecache.json
+options.txt
+servers.dat
+config/local/
+.env
+.env.*
+!.env.example
+
+# OS files
+.DS_Store
+Thumbs.db
