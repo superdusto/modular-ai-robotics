@@ -48,7 +48,7 @@ The project needs one modding baseline for independent offline robotics developm
 ## Decision
 Target **Minecraft: Java Edition 26.1.2**, **NeoForge**, and **JDK 25** for the first working prototype. Start with a single loader and a single Minecraft version. Choose exact NeoForge and development-tool versions when creating the workspace, then commit/pin them for reproducible builds.
 
-Do not target ATM10 specifically. This decision does **not** settle whether the eventual project owns all robot entities or acts as an integration/addon for a compatible system. That question remains open in issue #2.
+Do not target ATM10 specifically. This decision does **not** settle whether the eventual project owns all robot entities or acts as an integration/addon for a compatible system. That question was open when this platform decision was recorded. [ADR-0002](0002-standalone-core-optional-integrations.md) subsequently resolves it: the project owns an independently usable core, with optional integrations. ADR-0001 remains the accepted platform decision.
 
 ## Why this baseline
 - **Confirmed game release:** Mojang published Java Edition 26.1.2 on 2026-04-09 as a 26.1 hotfix.
