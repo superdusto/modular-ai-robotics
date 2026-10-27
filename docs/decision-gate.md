@@ -36,27 +36,29 @@ CI tests the validator first, then validates documents against the PR base SHA, 
 
 History comparison reads Git tree names as data; it never executes code from the selected base. It prevents record disappearance, not arbitrary rewriting of existing decisions. Review remains necessary for content changes.
 
-## Merge protection and safe rollout
+## Maintainer review and merge protection
 
-The existing active main-branch ruleset requires a PR, the decision-gate result from GitHub Actions, an up-to-date branch, resolved conversations, and blocked force pushes. Its bypass list is empty. Repository settings must be verified live; this document cannot configure them.
+Review is led by the maintainer, supported primarily by LLM reviews explicitly requested by the maintainer and by reproducible automated checks. The maintainer evaluates findings, resolves material issues, records any accepted residual risks, and is responsible for the final approval decision. This process does not claim independent human peer review. Account ownership or personal identity details are not part of the repository's review policy.
 
-The maintainer controls both @superdusto and @justdustn. These are two accounts for one person, not two independent human reviewers. Their CODEOWNERS entries identify ownership and review routing only. Do not use one account to approve the other account's work as evidence of independent review. GitHub account-based approval requirements do not establish that different people performed the work and review.
+For changes to the validator, workflow, tests, ownership rules or this policy:
 
-1. Keep the existing one-approval requirement, stale-approval dismissal, latest-reviewable-push approval requirement, required check and provider binding, and empty bypass list. Do not reduce protections to unblock this PR.
-2. Before claiming independent human review, identify a different qualified person, confirm their repository access and ownership eligibility, and request their substantive review of the validator, workflow, tests and policy. No such reviewer has been identified yet; the independent-review prerequisite remains unmet.
-3. Keep the hardening PR unmerged until that review is complete and the configured approval and check requirements are satisfied. Merely passing the governance tests does not justify approval.
-4. Before enabling required Code Owner review, ensure the base branch CODEOWNERS includes an eligible, genuinely independent human reviewer. GitHub uses the base branch ownership file; merging the current two-account ownership list alone does not resolve the single-maintainer limitation. Plan that ownership rollout without bypassing protections.
-5. In a controlled test repository, verify that an invalid ADR, a no-op validator, a skipped gate job, and a replacement workflow cannot enter the protected branch without the configured checks and reviews. Separately assess whether the reviewer is a different person; the workflow cannot prove this. Do not test by merging bypasses into this repository.
+1. Request a substantive LLM review of the exact proposed revision, including bypass attempts, malformed inputs, workflow execution, permissions and regression coverage. Evaluate findings against the code and authoritative evidence; do not treat a model's recommendation as proof.
+2. Record the reviewed commit, relevant findings, fixes, unresolved risks and reproducible test evidence. Re-review material changes after the review. Do not publish private account or integration details as review evidence.
+3. Require the Decision Gate to pass on the latest revision and inspect what actually executed. Passing tests alone does not establish technical correctness or justify approval.
+4. Complete the maintainer's review decision and satisfy the configured GitHub approval and status-check requirements before merging. LLM output does not itself count as a GitHub approving review.
+5. Verify enforcement changes in a controlled test repository. Cover invalid ADRs, no-op validators, skipped jobs and replacement workflows without merging bypasses into this repository.
 
-One listed code owner's approval can satisfy Code Owner review; listing two owners does not require both. Account eligibility and independence of human judgment are separate requirements.
+The active main-branch ruleset requires a PR, one approving review, dismissal of stale approvals, approval of the latest reviewable push, the decision-gate result from GitHub Actions, an up-to-date branch, resolved conversations, and blocked force pushes. Its bypass list is empty. Repository settings must be verified live; this document cannot configure them. Preserve these settings unless the maintainer explicitly authorizes a separate policy change. Do not add bypass exceptions or reduce protections to make a test pass.
 
-If the project remains solo-maintained, describe its process explicitly as maintainer review supported by reproducible automated checks and external AI code review. Record the reviewed commit, findings, unresolved risks and test evidence. This provides less assurance than independent human approval and does not satisfy or replace the current required approval. Adopting a different merge policy would require a separate explicit decision; this correction neither authorizes that change nor weakens existing protections.
+CODEOWNERS identifies ownership and review routing. One listed code owner's approval can satisfy Code Owner review; listing two owners does not require both. Before enabling required Code Owner review, verify that the base branch ownership file and eligible reviewers support the intended process. GitHub uses the base branch file, so changing the PR's ownership file alone does not change who can satisfy that requirement for the PR.
+
+Account-based approval rules do not prove independence of human judgment. Keeping approval authority outside an automated integration can provide useful separation of permissions, but must not be described as independent human peer review. The repository does not assert any account's integration configuration.
 
 ## Enforcement boundary
 
 - The local Python process rejects malformed documents it examines. It cannot prevent commits.
 - GitHub Actions executes PR-controlled code and reports a result. The workflow and tests can themselves be edited in the same PR. Pinning checkout and adding policy tests do not remove that trust boundary.
-- GitHub's required check and account-based approval rules constrain covered merges while active. They do not establish reviewer identity independence or technical correctness. Administrators can change settings. Independent human scrutiny remains a separate process requirement.
+- GitHub's required check and account-based approval rules constrain covered merges while active. They do not establish reviewer identity independence or technical correctness. Administrators can change settings. The maintainer-led, LLM-assisted process above provides review evidence, not a guarantee against defects.
 - Stronger automated tamper resistance needs a separately controlled check implementation with a verified execution and permission boundary. Do not claim this repository-local workflow provides that property.
 - Skipping an entire workflow can leave a required check pending. Skipping a job with a condition can satisfy the check without execution. Manual workflow_dispatch results do not substitute for an eligible PR check.
 
