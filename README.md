@@ -4,7 +4,7 @@
 
 Modular AI Robotics is a proposed Minecraft mod for useful, persistent robotic companions: ground robots, flying drones, humanoid machines, and eventually larger industrial mechs. Robots should be able to work alongside a player, manage resources, assist with construction and defense, and recover from interruptions—without a paid AI service or an internet connection.
 
-> **Status: Research and architecture planning.** No playable mod or prototype is available yet. The initial development target is **Minecraft Java Edition 26.1.2 + NeoForge + JDK 25** ([ADR-0001](docs/decisions/0001-initial-platform.md)). The implementation approach and software license remain open.
+> **Status: Research and architecture planning.** No playable mod or prototype is available yet. The initial development target is **Minecraft Java Edition 26.1.2 + NeoForge + JDK 25** ([ADR-0001](docs/decisions/0001-initial-platform.md)). The **standalone-core, optional-integration architecture** is accepted ([ADR-0002](docs/decisions/0002-standalone-core-optional-integrations.md)). The implementation details and software license remain open.
 
 ## Vision
 
@@ -21,10 +21,10 @@ Robots should select work from their goals and available capabilities, rather th
 
 ## Project principles
 
-1. **Offline and free to operate.** The core autonomy engine uses deterministic game-side logic. No ChatGPT API, hosted language model, or subscription is required.
+1. **Standalone and offline.** The core mod must run with Minecraft and NeoForge alone, including its own useful robots, charging, basic work and progression. No other content mod, ChatGPT API, hosted language model, subscription or internet connection is required.
 2. **Useful before clever.** Reliable task execution, persistence, and recovery come before natural language, advanced personality, or speculative general AI.
 3. **One brain architecture, multiple bodies.** Jobs should work with different robot platforms when their required capabilities are available.
-4. **Modular, not universally compatible by assumption.** Prefer vanilla and common APIs, with optional adapters for specialized mod mechanics.
+4. **Optional interoperability, never mandatory dependencies.** Use vanilla/NeoForge interfaces where they apply; isolate adapters for specialized third-party mod mechanics. Missing or incompatible external mods must not break the standalone core.
 5. **World-safe by design.** Respect ownership, permissions, protected locations, server authority, item accounting, and explicit work boundaries.
 6. **Data-driven expansion.** Support validated declarative knowledge and job definitions; imported data must not execute arbitrary code or grant new permissions.
 7. **Incremental development.** Prove a small working robot loop before expanding to multiple chassis, professions, or complex integrations.
@@ -63,6 +63,10 @@ The controller, task planner, and job definitions are intended to be independent
 
 More detail: [Architecture](docs/architecture.md), [Vision](docs/vision.md), and [Requirements](docs/requirements.md).
 
+## Standalone core and optional technology integrations
+
+Our mod owns its basic robots, docking/charging, autonomous controller, vanilla work actions and a route to building/upgrading its own units. Other mods can add access to player-built storage, processing, auto-crafting, power or third-party robots through explicitly supported adapters. An unsupported mod provides no implied machine control. See [ADR-0002](docs/decisions/0002-standalone-core-optional-integrations.md) and [Infrastructure Integration](docs/infrastructure-integration.md).
+
 ## Knowledge packs and adaptation
 
 The project may support **importable, declarative knowledge packs** for jobs, priorities, recipes or resource metadata, permitted operating procedures, and robot profiles. The initial format has **not** been selected. Structured, validated data is a more reliable starting point than attempting to interpret arbitrary PDF or Word documents.
@@ -93,9 +97,9 @@ See the [Development Roadmap](docs/development-roadmap.md), [Verification Plan](
 
 The **initial** Minecraft and loader target is selected: **Minecraft Java Edition 26.1.2 + NeoForge + JDK 25**. Exact loader/build-tool pinning and third-party integrations still require verification. This project is not restricted to ATM10.
 
-We also need to evaluate **standalone machines vs. integration with existing robot mods**, including OpenComputers: Modernized, CC: Tweaked, and PneumaticCraft: Repressurized. No third-party implementation is assumed reusable without checking its API and license.
+**Standalone operation is a fixed requirement.** Research now concerns which *optional* adapters to implement for compatible external robots, networks and machines. No third-party content mod or implementation is a core prerequisite; APIs, versions and licenses must be individually verified.
 
-See [ADR-0001](docs/decisions/0001-initial-platform.md), [Compatibility Research](docs/minecraft-compatibility.md), [Risks and Open Questions](docs/risks-and-open-questions.md), and the [issue tracker](https://github.com/superdusto/modular-ai-robotics/issues).
+See [ADR-0001](docs/decisions/0001-initial-platform.md), [ADR-0002](docs/decisions/0002-standalone-core-optional-integrations.md), [Compatibility Research](docs/minecraft-compatibility.md), [Risks and Open Questions](docs/risks-and-open-questions.md), and the [issue tracker](https://github.com/superdusto/modular-ai-robotics/issues).
 
 ## Contributing and project status
 
