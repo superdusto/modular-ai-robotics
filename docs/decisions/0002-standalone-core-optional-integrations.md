@@ -1,5 +1,40 @@
 # ADR-0002: Standalone Core with Optional Mod Integrations
 
+<!-- decision-gate
+{
+  "schema_version": 1,
+  "id": "ADR-0002",
+  "title": "Standalone core with optional integrations",
+  "status": "accepted",
+  "owner": "superdusto",
+  "recorded_on": "2026-10-26",
+  "issue": "https://github.com/superdusto/modular-ai-robotics/issues/2",
+  "impact": "high",
+  "verification_state": "not_run",
+  "test_evidence": [],
+  "claims": [
+    {
+      "id": "C1",
+      "kind": "requirement",
+      "status": "ESTABLISHED",
+      "statement": "The owner has selected an independently usable mod with no mandatory third-party technology or robotics content mod.",
+      "scope": "Accepted project requirement and repository planning record; does not assert completed gameplay implementation.",
+      "sources": [
+        "https://github.com/superdusto/modular-ai-robotics/issues/2"
+      ]
+    },
+    {
+      "id": "C2",
+      "kind": "runtime_observation",
+      "status": "UNVERIFIED",
+      "statement": "The standalone mod and optional adapter degradation behaviors have not been tested in Minecraft.",
+      "scope": "Modular AI Robotics Minecraft 26.1.2 NeoForge future runtime including optional installed or missing mods.",
+      "sources": []
+    }
+  ]
+}
+-->
+
 - **Status:** Accepted (project-owner requirement)
 - **Decision date:** 2026-10-26 (America/Chicago)
 - **Scope:** The entire Modular AI Robotics project, including initial release and future optional integrations.
@@ -51,7 +86,7 @@ The core should eventually be capable of assembling **its own** robots/modules u
 
 Full autonomous infrastructure expansion, blueprint placement, external network auto-crafting and direct control of third-party robots remain advanced, separately verified capabilities. The prototype does not need them.
 
-### Independence test (design acceptance)
+## Verification plan
 
 A supported core version must be able to:
 - Start in a clean environment with **Minecraft + NeoForge + Modular AI Robotics only**.
@@ -63,13 +98,17 @@ A supported core version must be able to:
 
 A missing third-party mod can still make some externally supplied blocks/items unavailable in the wider world; our mod cannot guarantee another mod's world data remains intact after uninstallation.
 
-## Alternatives considered
+## Alternatives
 
 1. **Addon only for one robotics mod — Rejected.** Faster initial functionality could come at the cost of full dependency on another maintainer, ecosystem and compatible versions.
 2. **Standalone with no integrations — Rejected.** Misses the player's goal of coordinating existing technical infrastructure.
 3. **Standalone core + optional adapters — Accepted.** Core ownership and maintenance remain within this repository; optional adapters provide additional capabilities when supported.
 
-## Consequences and tradeoffs
+## Evidence and uncertainty
+
+C1 records a user-approved architecture requirement, not a test of actual Minecraft behavior. C2 explicitly marks the implementation and fallback behavior as unverified. Other mods' compatibility, permissions, removal semantics and network APIs must be established per supported version and action path; no gameplay tests have run.
+
+## Consequences
 
 - We must implement our own minimum useful robot, dock, job control, persistence and vanilla-compatible action layer.
 - This costs more initial effort than reusing another mod's mandatory robot implementation.
@@ -77,6 +116,10 @@ A missing third-party mod can still make some externally supplied blocks/items u
 - The codebase will need negative-dependency startup tests, optional-dependency isolation and version-specific adapter tests.
 - Mod-specific compatibility may legitimately lag behind Minecraft/NeoForge releases.
 - "Works on its own" is a project requirement until actual build/gameplay tests establish it.
+
+## Revisit triggers
+
+Revisit optional adapter packaging and implementation details when a concrete compatibility issue or test failure warrants a change. Any proposal to make a third-party content mod mandatory would conflict with this accepted requirement and must receive explicit owner review through a superseding ADR, not an incidental adapter change.
 
 ## Follow-ups
 
