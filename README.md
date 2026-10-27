@@ -91,6 +91,8 @@ The robot should:
 
 Once reliable, add a mining module and verify that the same action framework can complete a small approved mining task. A flying drone can later test the separation of controller and chassis.
 
+The [courier scope and proposed contract](docs/courier/README.md) records the owner-selected first policy: another pickup after an incomplete batch requires owner-authorized continuation. Detailed action/recovery rules remain proposed, and the general pack importer and automatic repeat-trip policy are deferred.
+
 See the [Development Roadmap](docs/development-roadmap.md), [Verification Plan](docs/verification-plan.md), and [Player Experience](docs/player-experience.md).
 
 ## Research before implementation
