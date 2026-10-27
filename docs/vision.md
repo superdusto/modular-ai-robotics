@@ -11,6 +11,7 @@ Robots can join a player's base, accept goals, make bounded decisions, carry out
 - Jobs use reusable actions and capability requirements, not one-off hard-coded AI for every occupation.
 - Hardware enables functions; policy separately authorizes actions.
 - Persistence covers identity, inventory, jobs, home, and failure recovery.
+- Our mod owns the useful core: robots, autonomy, docking/charging, jobs and basic upgrade progression without another content mod ([ADR-0002](decisions/0002-standalone-core-optional-integrations.md)).
 - Optional adapters support mod-specific mechanics only where evidenced.
 - Declarative knowledge packs may configure behavior; arbitrary imported prose is not automatically executable.
 - No universal player equivalence or mod interoperability is promised.
@@ -22,4 +23,4 @@ General artificial intelligence, full real-player simulation, arbitrary GUI auto
 A persistent ground courier transfers items between two authorized containers and returns to a dock, safely resuming across save/reload. After that, validate a hardware-gated mining action.
 
 ## Decision status
-Initial target is **Minecraft Java 26.1.2 + NeoForge + JDK 25** ([ADR-0001](decisions/0001-initial-platform.md)). License, exact robot appearance, and standalone-vs-addon direction remain under evaluation.
+Initial target is **Minecraft Java 26.1.2 + NeoForge + JDK 25** ([ADR-0001](decisions/0001-initial-platform.md)). License, exact robot appearance, and optional adapter selection remain under evaluation. The standalone-first architecture is accepted ([ADR-0002](decisions/0002-standalone-core-optional-integrations.md)).
