@@ -3,12 +3,12 @@
 No implementation has begun. Stages are gated on evidence and verified behavior rather than dates.
 
 ## Stage 0 — Technical choices
-- Select one Minecraft release and loader after comparing ecosystem compatibility, API stability, tooling, and Java version.
+- **Accepted:** Minecraft Java 26.1.2, NeoForge and JDK 25 ([ADR-0001](decisions/0001-initial-platform.md)). Verify and pin the exact NeoForge/Gradle setup when scaffolding.
 - Compare standalone robots with supported integration into OpenComputers: Modernized, PneumaticCraft, and CC: Tweaked.
 - Select a license after checking intended dependencies and asset distribution.
 - Document security and action-permission model.
 
-**Exit:** Versioned target and written architecture decision.
+**Exit:** Initial target accepted. Remaining: implementation/toolchain pins, standalone-vs-addon decision, license, and action-permission design.
 
 ## Stage 1 — Persistent robot foundation
 One ground robot, owner, home/dock, inventory, energy, safe navigation, and save/load identity.
