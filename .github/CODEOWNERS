@@ -1,6 +1,7 @@
-# Maintain decision integrity and review the policy/test code together.
-/docs/decisions/ @superdusto
-/scripts/check_decisions.py @superdusto
-/tests/test_decision_gate.py @superdusto
-/.github/workflows/decision-gate.yml @superdusto
-/.github/CODEOWNERS @superdusto
+# Independent review of decision policy, executable CI and its regression tests.
+/docs/decisions/ @superdusto @justdustn
+/docs/decision-gate.md @superdusto @justdustn
+/scripts/ @superdusto @justdustn
+/tests/ @superdusto @justdustn
+/.github/workflows/ @superdusto @justdustn
+/.github/CODEOWNERS @superdusto @justdustn
