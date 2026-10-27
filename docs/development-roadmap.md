@@ -4,19 +4,19 @@ No implementation has begun. Stages are gated on evidence and verified behavior 
 
 ## Stage 0 — Technical choices
 - **Accepted:** Minecraft Java 26.1.2, NeoForge and JDK 25 ([ADR-0001](decisions/0001-initial-platform.md)). Verify and pin the exact NeoForge/Gradle setup when scaffolding.
-- Compare standalone robots with supported integration into OpenComputers: Modernized, PneumaticCraft, and CC: Tweaked.
+- **Accepted:** Standalone core with no required third-party content mods ([ADR-0002](decisions/0002-standalone-core-optional-integrations.md)); evaluate optional adapters to compatible external machines.
 - Select a license after checking intended dependencies and asset distribution.
 - Document security and action-permission model.
 
-**Exit:** Initial target accepted. Remaining: implementation/toolchain pins, standalone-vs-addon decision, license, and action-permission design.
+**Exit:** Platform and standalone architecture accepted. Remaining: toolchain pins, license, action-permission design and optional adapter priorities.
 
 ## Stage 1 — Persistent robot foundation
-One ground robot, owner, home/dock, inventory, energy, safe navigation, and save/load identity.
+One **mod-owned** ground robot, owner, home/dock, inventory, energy, safe navigation, and save/load identity without any other content mod.
 
 **Exit:** Repeated reloads preserve identity and cargo without duplication.
 
 ## Stage 2 — Courier end-to-end
-Two assigned containers, item transfer, navigation, charge/return, bounded retries and interruption recovery.
+Two assigned **vanilla** containers, item transfer, navigation, charge/return, bounded retries and interruption recovery.
 
 **Exit:** Auditable no-loss/no-duplication completion and safe failure on full/unloaded/protected targets.
 
