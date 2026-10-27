@@ -10,11 +10,13 @@
 - **R-005 — Modular actions:** Compose jobs from reusable, validated actions. Chassis provides movement and hardware; decisions and job definitions remain conceptually separate.
 - **R-006 — Extensible, not magically universal:** Integrate supported vanilla/common interfaces first, with explicit optional adapters. No blanket compatibility with every mod or graphical screen.
 - **R-007 — Trust-boundary clarity:** Imported data, robot observations and optional externally authored plans are untrusted inputs; they cannot execute arbitrary code or override permissions.
+- **R-008 — Standalone core:** Our mod must run with Minecraft and NeoForge only, with its own robot, jobs, docking/charging and progression.
+- **R-009 — Optional adapters:** No other content mod is a required runtime dependency. Absence or incompatibility of external mods must not prevent core operation. See [ADR-0002](decisions/0002-standalone-core-optional-integrations.md).
 
 ## First executable prototype — required
 - One ground robot with stable identity, owner, energy, cargo and configurable home/charging dock.
 - Player-facing means to assign and inspect a bounded delivery task, pause/recover and see why work is blocked (UI design TBD).
-- Transport specified items between two **authorized** vanilla or otherwise verified compatible containers.
+- Transport specified items between two **authorized vanilla containers** as the first standalone proof; additional containers are integration tests.
 - Validate distance, capacity, available items, loaded state and server-side permission before interactions.
 - Correctly handle actual extraction/insertion amounts, partial delivery, blocked/full targets, bounded retries and interruptions.
 - Reconcile state across restart and chunk transitions without inventing work while chunks are inactive.
@@ -44,6 +46,7 @@
 - General artificial intelligence or unrestricted self-modifying machine code.
 - Full player equivalence, automatic support for every mod/UI, or unrestricted simulation in unloaded chunks.
 - Supporting multiple game versions and mod loaders at project inception.
+- Requiring a particular third-party robotics or technology mod for core functionality.
 
 ## Acceptance, prioritization and traceability
 Work is gated by observed behavior, not release dates. The first priority is reliable delivery and recovery, not broad feature count. See [Verification Plan](verification-plan.md) for acceptance checks, [Player Experience](player-experience.md) for still-proposed interaction patterns, and [Roadmap](development-roadmap.md) for milestones.
