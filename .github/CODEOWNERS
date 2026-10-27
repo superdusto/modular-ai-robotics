@@ -1,4 +1,6 @@
-# Independent review of decision policy, executable CI and its regression tests.
+# Ownership and review routing for decision policy, executable CI and tests.
+# @superdusto and @justdustn are controlled by the same maintainer.
+# These entries do not establish independent human review; see docs/decision-gate.md.
 /docs/decisions/ @superdusto @justdustn
 /docs/decision-gate.md @superdusto @justdustn
 /scripts/ @superdusto @justdustn
