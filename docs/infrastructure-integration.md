@@ -45,7 +45,7 @@ Player-approved goals and registered infrastructure
                Replan or report
 ```
 
-Our controller owns the goal, work order, progress state, resource reservations, and user-visible reporting. **The other mod still owns its actual machines, networks, recipes, energy usage, crafting execution, and protection checks.** Our adapter may request work, but cannot claim the machine successfully completed it until the result is observed.
+Our controller owns the goal, work order, progress state, resource reservations, and user-visible reporting. **Other mods own their machines, networks, recipes, energy usage and crafting execution; a target-mod security station, grid-ownership check or other protection mechanism is not presumed to exist.** The Modular AI Robotics server policy must independently establish endpoint/network authority and any supported claim/protection decision at enrollment, on every action and for incoming AE2 requester output callbacks. Our adapter may request work but cannot claim completion until actual output and custody are reconciled. See [the proposed contract](integrations/contract.md) and [AE2 plan](integrations/ae2-first-adapter.md) (`F1`, `F2`; `INT-09A`, `INT-09B`, `INT-10A`, `INT-10B`).
 
 Keep adapters optional and version-scoped; if an external mod is absent or its API changes, the core must remain usable.
 
@@ -94,7 +94,7 @@ AE2's inspected `v26.1.13-beta` source contains `ICraftingService` methods such 
 
 **Capability requests:** An adapter reports the narrowly defined operations it supports (e.g., `inspect_inventory`, `transfer_item`, `request_craft`, `read_craft_status`, `activate_approved_operation`, `issue_robot_command`); these are **conceptual action IDs**, not NeoForge method names.
 
-**Separate authorization:** Validate the owner, target, region, permissions, per-mod security system and runtime state for every action. If no trustworthy permission path exists for a protected operation, deny it or require explicit integration. Do not assume a custom entity or FakePlayer inherits player authorization.
+**Separate authorization:** The Modular AI Robotics server must validate the requesting actor/owner, target, attached network identity, work zone, operation scope and current state at enrollment, every use and asynchronous callback. Use only independently verified claim/protection-provider and target-mod authorization checks applicable to the exact endpoint/action; do not presume a generic per-mod security system. No-provider, unknown, denied and errored rights must not be treated as grants; block any external-network operation whose ownership cannot be established. A custom entity, FakePlayer or AE2 `IActionSource` identity does not inherit another owner's authorization. Test `INT-05`, `INT-09A`, `INT-09B`, `INT-09C` and `INT-10C`.
 
 **State integrity:** Use atomic transfer transactions where supported. For longer jobs, track unique request IDs, required materials, pending results, completion evidence, retries, and safe reconciliation after save/reload. Do not promise distributed atomicity.
 
