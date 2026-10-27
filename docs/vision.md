@@ -22,4 +22,4 @@ General artificial intelligence, full real-player simulation, arbitrary GUI auto
 A persistent ground courier transfers items between two authorized containers and returns to a dock, safely resuming across save/reload. After that, validate a hardware-gated mining action.
 
 ## Decision status
-Minecraft version, mod loader, license, exact robot appearance, and standalone-vs-addon direction remain under evaluation.
+Initial target is **Minecraft Java 26.1.2 + NeoForge + JDK 25** ([ADR-0001](decisions/0001-initial-platform.md)). License, exact robot appearance, and standalone-vs-addon direction remain under evaluation.
