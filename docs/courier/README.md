@@ -1,8 +1,16 @@
 # First courier scope and review decisions
 
-The first courier milestone is one persistent ground robot carrying actual items between two authorized vanilla containers, with one home/charging dock. Start with one execution policy: after a completed batch leaves the delivery goal incomplete, another pickup requires explicit owner-authorized continuation. Automatic repeat trips and the general behavior-pack importer are deferred.
+The first courier milestone is one persistent ground robot carrying actual items between two authorized vanilla containers, with one home/charging dock. For this first prototype only, use one execution policy: after a completed batch leaves the delivery goal incomplete, another pickup requires explicit owner-authorized continuation. Automatic repeat trips remain a future design alternative; they are not permanently prohibited. The general behavior-pack importer is deferred.
 
 This records the project owner's initial scope choice on 2026-10-27. The detailed engine rules and verification plan below remain proposals for review. It does not accept ADR-0003, select a pack format, or establish that a Minecraft implementation works.
+
+## Decision provenance and review
+
+Source: the owner's private project discussion on 2026-10-27. In response to the recommendation to implement the stricter profile first and defer automatic repeat trips, the owner replied, "I like this idea." That selection covered the first prototype policy, including owner-authorized continuation after an incomplete batch, rather than adoption of every detailed contract rule.
+
+This is an agent-authored record of that privately communicated selection. It is not a GitHub-recorded maintainer acknowledgment or an approving review; no publicly linkable GitHub acknowledgment of the selection is cited here. The distinction remains visible for review, without treating the private discussion as a public approval record or reopening the unchanged scope choice.
+
+Review follows the repository's [maintainer-led, AI-assisted process](../decision-gate.md#maintainer-review-and-merge-protection). AI technical feedback does not itself supply maintainer adoption or a GitHub approving review.
 
 ## Status and reading order
 
@@ -27,7 +35,7 @@ The initial policy distinguishes these situations:
 - A partial insertion can retry the proven remainder under fresh rights, finite attempts and declared backoff. This is continuation of the carried batch, not permission for another pickup.
 - Restored cargo belongs to its original job and receipts. Recovery must validate that custody and current authority before physical continuation; it must not demand empty cargo or repeat an earlier extraction.
 
-Keep the automatic repeat-trip policy as a future alternative. Do not implement a second profile or a configurable policy switch in the first kernel. Pack import, migration, other professions, additional chassis and optional adapters remain later stages. The repository's [knowledge-pack proposal](../knowledge-packs.md) continues to leave the file format unselected.
+Keep the automatic repeat-trip policy as a future alternative for later design review. Do not implement a second profile or a configurable policy switch in the first kernel. Pack import, migration, other professions, additional chassis and optional adapters remain later stages. The repository's [knowledge-pack proposal](../knowledge-packs.md) continues to leave the file format unselected.
 
 ## Decisions still requiring review
 

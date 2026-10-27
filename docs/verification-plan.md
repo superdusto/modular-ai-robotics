@@ -26,6 +26,8 @@ Use a disposable Minecraft Java Edition 26.1.2 + NeoForge development world. Val
 
 The [courier scope](courier/README.md), [proposed engine contract](courier/contract.md), and [detailed courier cases](courier/verification.md) specify owner continuation, retained cargo, action-specific controls, bounded recovery/retry timing and independent save-failure verdicts. Complete cases remain unexecuted; partial model observations do not establish Minecraft acceptance or durable conservation.
 
+[RCN-09](courier/verification.md#rcn-09-player-facing-courier-controls) covers the player-facing assignment/status/pause/recovery flow, authorization failures and protected-information disclosure without selecting a GUI. [RCN-10](courier/verification.md#rcn-10-server-chunk-unload-and-reload) covers actual server unload/reload for robot, source, destination and dock chunks in integrated and dedicated environments, preserving custody, nonrenewing limits and independently authorized record-only controls. Both are planned and not run.
+
 Test direct entity actions and any optional FakePlayer-context actions separately. For each, identify ownership, permission APIs, claim behavior and whether events can cancel the mutation. A custom entity's success is **not** proof it was authorized by all protection mods. Record unsupported protections as compatibility gaps.
 
 ## Performance and reliability

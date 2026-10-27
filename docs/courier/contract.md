@@ -1,6 +1,6 @@
 # Proposed courier engine contract
 
-**Status: Proposed, 2026-10-27.** The owner-selected [initial scope](README.md) uses one bounded-batch policy with owner-authorized continuation. The detailed contract below remains subject to the listed review decisions. It describes intended behavior, not implemented server enforcement or a durability guarantee.
+**Status: Proposed, 2026-10-27.** The owner-selected [initial scope](README.md) uses one bounded-batch policy with owner-authorized continuation for the first courier prototype only. Automatic repeat trips remain a future design alternative. The detailed contract below remains subject to the listed review decisions. It describes intended behavior, not implemented server enforcement or a durability guarantee.
 
 The contract supports [requirements R-001–R-009](../requirements.md) and the accepted platform/standalone choices in [ADR-0001](../decisions/0001-initial-platform.md) and [ADR-0002](../decisions/0002-standalone-core-optional-integrations.md). It does not change [ADR-0003](../decisions/0003-capability-driven-integration-ports.md)'s proposed status or select a pack schema/registry version.
 
@@ -58,7 +58,7 @@ Job success requires D=Q, C=0, no unresolved effects, actual dock arrival and ve
 
 ## Continuation and recovery
 
-After a completed batch/service leaves D<Q, another pickup requires a fresh owner command and continuation attempt within the same job. Preserve cumulative quantities, original intent/beneficiary, receipt lineage and spent limits. Require empty proven cargo, remaining Q−E, current rights and enough remaining applicable allowances; do not start another pickup after its required insertion allowance is exhausted.
+For the first courier prototype, after a completed batch/service leaves D<Q, another pickup requires a fresh owner command and continuation attempt within the same job. Preserve cumulative quantities, original intent/beneficiary, receipt lineage and spent limits. Require empty proven cargo, remaining Q−E, current rights and enough remaining applicable allowances; do not start another pickup after its required insertion allowance is exhausted. This initial policy does not settle later automatic repeat-trip behavior.
 
 New batches require their own current dependency certificates. Old unload/home/charge results cannot release a new batch. Completed physical mutations remain historical and are never replayed.
 
