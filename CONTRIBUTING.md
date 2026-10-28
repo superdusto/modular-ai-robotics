@@ -24,11 +24,11 @@ Open or discuss a focused issue describing purpose, constraints, relevant Minecr
 
 ## Licensing and implementation hold
 
-The owner adopted MIT for original code, documentation, schemas and examples, and [reserved original asset rights with explicit permitted uses](ASSET_LICENSE.md), through approval and merge of PR #20 on 2026-10-28. See the [license map](docs/licensing.md) and [accepted ADR-0004](docs/decisions/0004-code-and-asset-licensing.md).
+The adopted policy uses MIT for original code, documentation, schemas and examples, and [reserved original asset rights with explicit permitted uses](ASSET_LICENSE.md). See the [license map](docs/licensing.md) and [ADR-0004](docs/decisions/0004-code-and-asset-licensing.md#evidence-and-uncertainty) for the accepted revision and adoption evidence.
 
 **Do not submit significant implementation code or assets until the maintainer separately and explicitly authorizes those submissions.** Licensing/contribution-policy adoption is complete; the implementation contribution hold remains. Research, architecture discussion and test proposals may continue under the existing guidance.
 
-Published license grants apply to their accompanying copies. This contribution hold controls acceptance of new submissions and does not revoke those published permissions. The accepted policy revision is `67911cff476f4f667e44356426de940ac67c80d1`, with [public approving-review evidence](https://github.com/superdusto/modular-ai-robotics/pull/20#pullrequestreview-5677986426); that acceptance does not itself authorize significant implementation submissions.
+Published license grants apply to their accompanying copies. This contribution hold controls acceptance of new submissions and does not revoke those published permissions. The implementation-transition decision and initial maintainer intake checklist are tracked in [issue #9](https://github.com/superdusto/modular-ai-robotics/issues/9).
 
 ## Contribution rights
 
