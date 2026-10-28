@@ -24,17 +24,17 @@ Open or discuss a focused issue describing purpose, constraints, relevant Minecr
 
 ## Licensing and implementation hold
 
-The owner selected MIT for original code, documentation, schemas and examples, and [reserved original asset rights with explicit permitted uses](ASSET_LICENSE.md). See the [license map](docs/licensing.md) and [proposed ADR-0004](docs/decisions/0004-code-and-asset-licensing.md).
+The adopted policy uses MIT for original code, documentation, schemas and examples, and [reserved original asset rights with explicit permitted uses](ASSET_LICENSE.md). See the [license map](docs/licensing.md) and [ADR-0004](docs/decisions/0004-code-and-asset-licensing.md#evidence-and-uncertainty) for the accepted revision and adoption evidence.
 
-**Do not submit significant implementation code or assets until the maintainer adopts the detailed licensing/contribution package and explicitly authorizes those submissions.** This proposal records the direction; it does not lift the hold. Research, architecture discussion and test proposals may continue under the existing guidance.
+**Do not submit significant implementation code or assets until the maintainer separately and explicitly authorizes those submissions.** Licensing/contribution-policy adoption is complete; the implementation contribution hold remains. Research, architecture discussion and test proposals may continue under the existing guidance.
 
-Published license grants apply to their accompanying copies while detailed-policy adoption is pending. This contribution hold controls acceptance of new submissions and does not revoke those published permissions. Final adoption must identify the exact reviewed policy revision; it does not itself authorize significant implementation submissions.
+Published license grants apply to their accompanying copies. This contribution hold controls acceptance of new submissions and does not revoke those published permissions. The implementation-transition decision and initial maintainer intake checklist are tracked in [issue #9](https://github.com/superdusto/modular-ai-robotics/issues/9).
 
-## Contribution rights (proposed)
+## Contribution rights
 
 Contributors retain copyright in material they own. Submit original code and other MIT-covered material under [MIT](LICENSE). Original reserved-asset contributions require the express maintainer grant below and permission to offer the public uses in [the asset notice](ASSET_LICENSE.md), unless a separately reviewed applicable license is recorded. No copyright assignment or exclusive relicensing permission is requested. Independent packs not being incorporated into MAR retain their creators' chosen licenses.
 
-### Reserved-asset contribution grant (proposed)
+### Reserved-asset contribution grant
 
 Before a reserved asset is incorporated into MAR, its rights holder or authorized representative must expressly grant MAR's current and future project maintainers a **nonexclusive, worldwide, royalty-free copyright license** to:
 
@@ -58,6 +58,6 @@ This is a template, not a certification already made by the maintainer. A bot ma
 
 Disclose copied/adapted material, its source and license, required attribution/notices, and uncertain provenance. Check applicable generation-tool/output terms separately from third-party material found in generated output. Record relevant terms references/dates and resolve material restrictions or identified matches before acceptance. Private employer evidence may be handled privately; do not publish prompts, credentials, unrelated private material, or sensitive provenance evidence.
 
-A formal DCO sign-off workflow is not adopted by this proposal. Do not automatically add a human Signed-off-by trailer. Hold affected material when no truthful authority declaration can be supplied or a material rights conflict remains unresolved.
+A formal DCO sign-off workflow is not part of this policy. Do not automatically add a human Signed-off-by trailer. Hold affected material when no truthful authority declaration can be supplied or a material rights conflict remains unresolved.
 
 New reserved assets require exact file paths, rights-holder credits, provenance, applicable terms, and the express grant record with its reviewed policy/asset-notice revision in the [asset inventory](docs/licensing.md#reserved-asset-inventory). An authority declaration without the express asset grant is insufficient. Third-party material retains its own terms; the project does not claim it as original MAR work.

@@ -26,7 +26,7 @@ No general permission is granted to extract, modify, port or repurpose the reser
 
 ## Contributed assets
 
-Before incorporating a contributed reserved asset, maintainers must obtain the rights holder's express [reserved-asset contribution grant](CONTRIBUTING.md#reserved-asset-contribution-grant-proposed). That grant separately authorizes incorporation, adaptation and publication in MAR and offering the public permissions in this notice at the reviewed revision. The public-use permissions above do not replace that grant. Contributors retain ownership and applicable copyright credit.
+Before incorporating a contributed reserved asset, maintainers must obtain the rights holder's express [reserved-asset contribution grant](CONTRIBUTING.md#reserved-asset-contribution-grant). That grant separately authorizes incorporation, adaptation and publication in MAR and offering the public permissions in this notice at the reviewed revision. The public-use permissions above do not replace that grant. Contributors retain ownership and applicable copyright credit.
 
 ## Scope and other material
 
