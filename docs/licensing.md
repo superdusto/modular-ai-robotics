@@ -2,7 +2,7 @@
 
 The owner selected MIT for original MAR code and examples, reserved rights for original artwork and sounds, and creator-chosen terms for independently authored community packs. The public copyright credit selected by the owner is **superdusto**.
 
-The detailed publication package and contribution procedure are proposed in [ADR-0004](decisions/0004-code-and-asset-licensing.md). The existing significant-implementation contribution hold remains in effect pending maintainer adoption and explicit authorization in [CONTRIBUTING](../CONTRIBUTING.md). The owner's direction selection is not a rights certification for every existing file.
+The detailed publication package and contribution procedure are proposed in [ADR-0004](decisions/0004-code-and-asset-licensing.md). The existing significant-implementation contribution hold remains in effect pending maintainer adoption and explicit authorization in [CONTRIBUTING](../CONTRIBUTING.md). The owner's separate existing-material authority and draft-publication confirmation is recorded in that ADR; it is not an independent rights audit or a GitHub approving review.
 
 ## License map
 
@@ -38,7 +38,9 @@ Third-party materials must carry their own notices and permissions; do not list 
 
 The [contribution procedure](../CONTRIBUTING.md#contribution-rights-proposed) proposes inbound terms matching the affected material, an express human rights declaration tied to the reviewed revision, and separate checks of generation-tool terms and third-party provenance. It does not adopt DCO, a CLA or copyright assignment.
 
-Before publishing this package, the maintainer must confirm authority to license the existing original material, resolve any material provenance exception, and review the exact notices and contribution procedure. No declaration, sign-off or consent may be invented for the maintainer. Record implementation authorization separately when lifting the hold; a license choice does not establish that Minecraft behavior is implemented or verified.
+The owner expressly confirmed authority to license the existing original material in reviewed commit `2b5090b78495aae1da2aadf0e615843ec636efa6` and authorized draft PR publication in private project chat on 2026-10-27. No third-party exception was identified in that reply. This is an owner attestation, not proof of every file's provenance; third-party terms and newly identified exceptions still require review.
+
+Before adopting the detailed package, review the exact notices, contribution procedure and any material rights exception. No additional declaration, sign-off or consent may be invented for the maintainer. Record implementation authorization separately when lifting the hold; publication of the licensing proposal does not establish that Minecraft behavior is implemented or verified.
 
 ## References
 

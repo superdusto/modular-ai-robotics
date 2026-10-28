@@ -13,7 +13,7 @@
 | Data pack imports contain unsafe or ambiguous instructions | Unauthorized actions or confusing behavior | Strict schemas; no embedded executable code; preview and rollback | [#5](../../issues/5) |
 | Mod APIs vary by Minecraft version | Fragile compatibility, hard-to-maintain adapters | Compatibility tiers; version-locked optional tests and adapters | [#2](../../issues/2) |
 | Flying navigation or large mechs have different physics/geometry | Chassis design leaks into planning, navigation bugs | Prove one courier on two chassis before expanding | [#4](../../issues/4) |
-| Licensing direction selected; detailed terms and existing-material authority pending | Ambiguous rights if the proposal is treated as adoption | Review [ADR-0004](decisions/0004-code-and-asset-licensing.md), provenance and explicit contribution authorization | [#8](../../issues/8) |
+| Detailed licensing terms proposed; existing-material authority owner-attested | Owner attestation is not an independent rights audit or adoption of every proposed term | Review [ADR-0004](decisions/0004-code-and-asset-licensing.md), provenance exceptions and explicit contribution authorization | [#8](../../issues/8) |
 | Complex UX or personality features expand scope | A working prototype is delayed | Require a minimal player control/status path first; defer flavor | Proposed |
 
 ## Decisions already accepted
@@ -25,7 +25,7 @@
 ## Still unresolved
 1. Which optional adapters to prioritize, and whether adapters should be internal or separately packaged.
 2. Exact MDK, NeoForge, Gradle and developer environment pinning, including tests.
-3. Adoption of the selected MIT code / reserved-asset package, existing-material authority and explicit contribution authorization ([ADR-0004](decisions/0004-code-and-asset-licensing.md)).
+3. Adoption of the selected MIT code / reserved-asset package, review of rights exceptions and explicit contribution authorization; existing-material authority is owner-attested ([ADR-0004](decisions/0004-code-and-asset-licensing.md)).
 4. Robot identity ownership and migration across physical chassis.
 5. Exact permission/protection adapters and action semantics.
 6. Knowledge pack format, validation versioning and import UX.

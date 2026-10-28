@@ -26,7 +26,7 @@
       "kind": "requirement",
       "status": "UNVERIFIED",
       "statement": "The maintainer has authority to apply the proposed terms to all pre-existing original material included in this package.",
-      "scope": "Existing original MAR source, documentation and other material; requires express maintainer confirmation and resolution of any rights exceptions before publication.",
+      "scope": "Existing original MAR material; the owner expressly confirmed authority for reviewed package 2b5090b78495aae1da2aadf0e615843ec636efa6 and draft publication on 2026-10-27. This is owner-attested, not an independent legal or provenance audit.",
       "sources": []
     }
   ]
@@ -48,7 +48,7 @@ Publish the authentic [MIT grant](../../LICENSE) for original MAR code, document
 
 Independent packs remain under their creators' chosen licenses. Code forks may retain MIT-covered material with its notices, but need replacement art or permission for reserved assets. No copyright assignment, exclusive relicensing right, mandatory DCO process or compatibility-intake program is adopted by this proposal.
 
-The proposed contribution procedure uses inbound terms matching the affected material and an express human rights declaration for the accepted revision. The owner's agreement to the direction and choice of public credit do not themselves certify existing-file rights or authorize significant implementation submissions.
+The proposed contribution procedure uses inbound terms matching the affected material and an express human rights declaration for the accepted revision. The owner separately confirmed authority over the existing original material and authorized publishing the reviewed package as a draft PR. Significant implementation submissions still require explicit authorization after adoption of the detailed package.
 
 ## Alternatives
 
@@ -65,11 +65,13 @@ Reusers must preserve the MIT notices for covered material, but may keep their m
 
 C1 is supported by the [MIT text](https://spdx.org/licenses/MIT.txt). [Create's inspected license](https://github.com/Creators-of-Create/Create/blob/mc1.21.1/dev/LICENSE.md) illustrates separate code/asset treatment; MAR's explicit asset permissions are project-specific.
 
-The owner selected the direction in private project chat on 2026-10-27, replying "This seems fair" to the scoped proposal, and selected "superdusto" for public credit. This is an agent-authored record of those selections, not a GitHub-recorded approving review or a rights attestation. C2 remains unverified; a repository role, bot account, AI review or copyright notice does not establish ownership. No copyright assignment or human sign-off is inferred.
+The owner selected the direction in private project chat on 2026-10-27, replying "This seems fair" to the scoped proposal, and selected "superdusto" for public credit. After being asked to confirm authority to license the existing original MAR material and authorize publication of reviewed commit `2b5090b78495aae1da2aadf0e615843ec636efa6` as a draft PR, the owner replied: "I am the one designing it so yes." No third-party exception was identified in that reply; this does not establish that no exception exists.
+
+This is an agent-authored record of express private owner confirmation, not a GitHub-recorded approving review, DCO sign-off or copyright assignment. C2 remains independently unverified: the owner has attested authority, but no independent legal or provenance audit has been performed. Future substantive changes and contributions still require their own applicable rights review; the record does not extend assent to unrelated material.
 
 ## Verification plan
 
-Compare the MIT body with the authoritative text, changing only the year and copyright holder. Inspect the complete proposed file scope, rights/provenance exceptions, asset permissions and contribution declaration. Obtain the maintainer's express existing-material authority confirmation and adoption decision before publication. Run documentation links, Decision Gate tests and current/history checks against the trusted base.
+Compare the MIT body with the authoritative text, changing only the year and copyright holder. Inspect the complete proposed file scope, rights/provenance exceptions, asset permissions and contribution declaration. Retain the owner authority/publication confirmation recorded above, resolve identified rights exceptions, and obtain the detailed-package adoption decision before lifting the contribution hold. Run documentation links, Decision Gate tests and current/history checks against the trusted base.
 
 Keep verification_state at not_run until the declared review and evidence requirements are satisfied. Passing mechanical documentation checks alone does not complete the rights review, lift the contribution hold or verify Minecraft behavior.
 
