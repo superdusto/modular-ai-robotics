@@ -20,20 +20,28 @@ python3 -B models/courier/run-model.py
 
 The runner selects `MAR_JAVA_HOME`, then `JAVA_HOME`, then `javac` on PATH, and uses that compiler's sibling JVM. An explicitly selected home is authoritative: an invalid or different-major JDK fails without falling back. Both compiler and runtime must be major 25; compilation uses `--release 25`. No dependency manager, Minecraft installation or network access is needed to run the model with those tools already installed.
 
-Compiled classes live in a temporary directory cleaned on success or failure. Each run replaces the ignored `build/courier-model/model-results.json` report, including failed runs. The report records execution time, compiler/runtime versions, SHA-256 hashes of both Java sources and the runner, scenario names, assertion count and evidence limits. Reports are run observations, not committed fixtures. Use `--report PATH` for a different output path; a relative override is relative to the caller's working directory.
+Compiled classes live in a temporary directory cleaned on success or failure. Each run replaces the ignored `build/courier-model/model-results.json` report, including failed runs. Report schema 2 records execution time, compiler/runtime versions, SHA-256 hashes of the three Java sources, runner and scenario manifest, stable scenario IDs, assertion counts, baseline coverage and evidence limits. Known-gap observations are separate from the 27-scenario result and explicitly marked `observed_unfixed`. Reports are run observations, not committed fixtures. Use `--report PATH` for a different output path; a relative override is relative to the caller's working directory.
 
-The [Courier Model workflow](../../.github/workflows/courier-model.yml) runs the same command with Temurin JDK 25 on Ubuntu and writes the JSON report into its log. Both actions are pinned to full commits; the Java setup pin is [setup-java v6.1.0](https://github.com/actions/setup-java/releases/tag/v6.1.0). Its reported JDK patch/build is an observation of that run, not a NeoForge project toolchain pin. The existing Decision Gate remains separate.
+The [reviewed baseline manifest](scenario-baseline.json) requires M01–M27, their original names, each scenario's reviewed assertion minimum and at least 210 total assertions. IDs are explicit in the harness and remain stable if cases are reordered or extended. Counts must agree with the per-ID results. Removing cases, reusing IDs or replacing a substantial scenario with one trivial assertion fails the runner even when the harness reports its reduced list as passed. This is a retention guard, not proof that an assertion is meaningful or that the contract is correct; manifest/oracle edits still require review.
+
+Run the coverage-guard regressions without a JDK:
+
+```sh
+python3 -B models/courier/test_runner.py
+```
+
+The [Courier Model workflow](../../.github/workflows/courier-model.yml) runs the coverage-guard regressions and the same model command with Temurin JDK 25 on Ubuntu, writing the JSON report into its log. Both actions are pinned to full commits; the Java setup pin is [setup-java v6.1.0](https://github.com/actions/setup-java/releases/tag/v6.1.0). Its reported JDK patch/build is an observation of that run, not a NeoForge project toolchain pin. The existing Decision Gate remains separate.
 
 ## Import provenance
 
-Both Java files preserve the earlier local v0.2.0 source byte-for-byte after the added MIT copyright/SPDX header. The original source hashes, before that header, are:
+`CourierKernel.java` preserves the earlier local v0.2.0 source byte-for-byte after the added MIT copyright/SPDX header. At the initial import, [5f765847](https://github.com/superdusto/modular-ai-robotics/commit/5f765847cde9f4ca5556dd89334c98391ff80e5e), the scenario harness also matched its original bytes. The review revision adds stable IDs and per-scenario assertion reporting to that harness; its original scenario bodies and 210 assertion executions are retained. A separate known-gap harness reproduces lifecycle defects. The original source hashes, before headers and those harness-reporting changes, are:
 
 | Source | SHA-256 |
 | --- | --- |
 | CourierKernel.java | `ab1b6132ed1aa00b2d3ad46f684434189d6d422581f55844df13cb587c0917fe` |
 | CourierKernelChecks.java | `38d52022571a0d2a83877ca2ea1255fc7005ff6822808c50fd264ae46f9ae5c0` |
 
-The runner is adapted for JDK discovery, caller-independent source paths, ignored reports and failure reporting. No Java behavior or scenario oracle is changed in this import. Original MAR material is covered by [MIT](../../LICENSE), with public credit superdusto. No artwork, sounds, upstream implementation or third-party source is included.
+The runner is adapted for JDK discovery, caller-independent source paths, ignored reports, failure reporting and independent baseline enforcement. Kernel behavior is unchanged. Original MAR material is covered by [MIT](../../LICENSE), with public credit superdusto. No artwork, sounds, upstream implementation or third-party source is included.
 
 ## Recovery behavior
 
@@ -55,7 +63,7 @@ advanceActiveTicks advances only the harness's explicit logical active clock. It
 
 ## Executed scenarios
 
-M01–M27 identify checks in this model version. They are not executions of complete RCN/CV/PK cases. The runner emits these names in order.
+M01–M27 identify the retained baseline in this model version. They are not executions of complete RCN/CV/PK cases. The harness reports explicit IDs, names and executed assertion counts; the runner checks them against the reviewed manifest.
 
 | ID | Scenario |
 |---|---|
@@ -98,7 +106,20 @@ Full RCN/CV/PK cases retain their original not_run/not_executed statuses. These 
 This candidate implements selected rules rather than full contract conformance. In particular:
 
 - `continueBatch` permits owner-authorized continuation after successful unload without requiring HOME/CHARGE certificates. The proposed contract describes continuation after batch service. The existing receipt-pressure and cumulative-attempt scenarios also use this simplified sequence; passing them does not prove the stricter service gate.
-- `snapshotCopy` fences an empty, closed batch, but the model has no validated recovery path for that case. Retained-cargo recovery requires positive cargo, and batch continuation rejects the outstanding recovery flag. This leaves that restored job blocked; the model must not be presented as complete empty-cargo restart support.
+- **P2-01:** `snapshotCopy` requires recovery for zero-cargo jobs before their first pickup, after successful unload before HOME/CHARGE, and after service closes an incomplete batch. Retained-cargo recovery rejects zero cargo; ordinary resume and batch continuation cannot clear the recovery flag. Physical dispatch remains blocked by recovery or the closed-batch guard. The gap is broader than empty closed batches. Do not clear the fence merely because cargo is zero; current rights, attributable custody/receipts and the original budgets/timing still need a validated recovery path.
+- **P2-02:** after delivery and service set SUCCEEDED, a new authorized `stop` can overwrite it with SUSPENDED (pause) or CANCELLED. Item quantities and spent physical work remain unchanged, but the final job verdict and control epoch change. The proposed correction is a terminal rejection/no-op response for a new post-completion control, preserving SUCCEEDED, cancellation state, epoch, receipts and accounting. This is a follow-up oracle for review, not behavior implemented or newly adopted by this import.
+
+The separate [known-gap harness](CourierKernelKnownGapChecks.java) reproduces these lifecycle defects:
+
+| ID | Observation of the unfixed candidate |
+| --- | --- |
+| KG01 | Empty restoration before first pickup stays fenced with no recovery path |
+| KG02 | Empty restoration after unload before HOME/CHARGE stays fenced |
+| KG03 | Empty restoration after service of an incomplete batch stays fenced |
+| KG04 | A new pause overwrites a completed job's SUCCEEDED status |
+| KG05 | A new cancellation overwrites a completed job's SUCCEEDED status |
+
+These observations assert the current gaps and unchanged item accounting; they are not passing desired recovery/terminal-state scenarios. A green candidate run means the baseline was retained and the listed defects were reproduced. When fixing a gap, replace its observation with reviewed desired-behavior regressions and update the manifest deliberately. Behavioral corrections, including the earlier service gate, are tracked separately in [issue #23](https://github.com/superdusto/modular-ai-robotics/issues/23).
 
 These are review findings in the preserved candidate, not demonstrated Minecraft defects or newly adopted product behavior. Reconcile them with the proposed contract and add appropriate regression scenarios before claiming those rules implemented. The initial review can distinguish preserving this model for reproducibility from accepting it as a production API.
 

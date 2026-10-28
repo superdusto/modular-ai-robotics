@@ -8,7 +8,8 @@ import static java.lang.System.out;
 /** Independently stated scenario oracles for a candidate model, not Minecraft fixtures. */
 public final class CourierKernelChecks {
     private static final CourierKernel.Context ALLOW = CourierKernel.Context.permitted();
-    private static final List<String> passed = new ArrayList<>();
+    private record ScenarioResult(String id, String name, int assertions) {}
+    private static final List<ScenarioResult> passed = new ArrayList<>();
     private static int assertions;
     private static void check(boolean value, String message) {
         assertions++; if (!value) throw new AssertionError(message);
@@ -30,11 +31,15 @@ public final class CourierKernelChecks {
         check(j.home("home", ALLOW).equals("SUCCEEDED"), "home");
         check(j.charge("charge", ALLOW).equals("SUCCEEDED"), "charge");
     }
-    private static void scenario(String name, Runnable run) { run.run(); passed.add(name); }
+    private static void scenario(String id, String name, Runnable run) {
+        int before = assertions;
+        run.run();
+        passed.add(new ScenarioResult(id, name, assertions - before));
+    }
     public static void main(String[] args) {
         if (!"25".equals(System.getProperty("java.specification.version")))
             throw new IllegalStateException("The candidate model requires JDK 25");
-        scenario("normal delivery requires final service", () -> {
+        scenario("M01", "normal delivery requires final service", () -> {
             var j = job(64, 16);
             j.pickup("l", 16, false, ALLOW); j.arriveDestination("d", ALLOW); j.unload("u", 16, ALLOW);
             check(j.state() != CourierKernel.State.SUCCEEDED, "delivery alone cannot finish job");
@@ -42,7 +47,7 @@ public final class CourierKernelChecks {
             j.charge("c", ALLOW); check(j.state() == CourierKernel.State.SUCCEEDED, "full completion");
             check(j.source() == 48 && j.cargo() == 0 && j.destination() == 16, "closed count oracle");
         });
-        scenario("source shortfall suspends and needs same-job owner continuation", () -> {
+        scenario("M02", "source shortfall suspends and needs same-job owner continuation", () -> {
             var j = job(10, 16); deliveredBatch(j, 10, true);
             check(j.state() == CourierKernel.State.SUSPENDED && j.reason().equals("source_shortfall"), "shortfall state");
             int budget = j.productionLeft(); j.duplicateOriginalRequest("request", 16);
@@ -61,12 +66,12 @@ public final class CourierKernelChecks {
             check(j.extracted() == 16 && j.delivered() == 16 && j.cargo() == 0, "remaining six only");
             check(j.source() + j.cargo() + j.destination() == 16, "initial ten plus explicit inflow six");
         });
-        scenario("capacity-limited batch is not a source shortfall", () -> {
+        scenario("M03", "capacity-limited batch is not a source shortfall", () -> {
             var j = job(64, 10); deliveredBatch(j, 10, false);
             check(j.state() == CourierKernel.State.SUSPENDED && j.reason().equals("capacity_limited"), "capacity reason");
             check(j.source() == 54 && j.extracted() == 10 && j.delivered() == 10, "bounded capacity");
         });
-        scenario("nonterminal partial pickup holds cargo and blocks downstream", () -> {
+        scenario("M04", "nonterminal partial pickup holds cargo and blocks downstream", () -> {
             var j = job(64, 16);
             check(j.pickup("partial", 7, false, ALLOW).equals("PARTIAL"), "partial effect");
             check(j.cargo() == 7 && j.source() == 57 && j.reason().equals("pickup_incomplete"), "retain known cargo");
@@ -76,7 +81,7 @@ public final class CourierKernelChecks {
             check(falseProof.pickup("fake", 7, true, ALLOW).equals("INVALID_SHORTFALL_PROOF"), "no invented shortfall");
             check(falseProof.source() == 64 && falseProof.cargo() == 0, "false proof has no effect");
         });
-        scenario("partial unload blocks home but permits separately scoped safety service", () -> {
+        scenario("M05", "partial unload blocks home but permits separately scoped safety service", () -> {
             var j = job(64, 16); j.pickup("l", 16, false, ALLOW); j.arriveDestination("d", ALLOW);
             check(j.unload("u", 6, ALLOW).equals("PARTIAL"), "partial insertion");
             check(j.home("h", ALLOW).equals("DEPENDENCY_BLOCKED"), "no normal return");
@@ -84,7 +89,7 @@ public final class CourierKernelChecks {
             check(!j.succeeded(CourierKernel.Step.HOME) && !j.succeeded(CourierKernel.Step.UNLOAD), "no normal certificates");
             check(j.delivered() == 6 && j.cargo() == 10, "safety preserves quantities");
         });
-        scenario("retained cargo needs owner validation after simulated restoration", () -> {
+        scenario("M06", "retained cargo needs owner validation after simulated restoration", () -> {
             var original = partialJob();
             var j = original.snapshotCopy(); int budget = j.productionLeft();
             check(j.unload("blocked", 10, ALLOW).equals("RECOVERY_REQUIRED"), "restoration cannot dispatch");
@@ -96,7 +101,7 @@ public final class CourierKernelChecks {
             int after = j.productionLeft(); j.unload("u10", 10, ALLOW);
             check(j.delivered() == 16 && j.productionLeft() == after, "effect replay returns receipt");
         });
-        scenario("record stop works under physical uncertainty and cancellation remains open", () -> {
+        scenario("M07", "record stop works under physical uncertainty and cancellation remains open", () -> {
             var j = job(64, 16); j.pickup("l", 16, false, ALLOW); j.markUncertain();
             var ack = j.stop("cancel", "owner", 0, true, true);
             check(ack.accepted() && ack.fenced() && !ack.effectsResolved(), "separate stop facts");
@@ -106,7 +111,7 @@ public final class CourierKernelChecks {
             check(j.cargo() == 16, "no disposal");
             check(j.stop("cancel", "owner", 0, true, true).equals(ack), "duplicate stop");
         });
-        scenario("stop survives exhausted model work and failed write is explicit", () -> {
+        scenario("M08", "stop survives exhausted model work and failed write is explicit", () -> {
             var j = new CourierKernel.Job("j", "owner", "r", 16, 64, 16, 0, 0, 0);
             var ack = j.stop("stop", "owner", 0, false, false);
             check(ack.accepted() && ack.fenced() && !ack.recordWriteAccepted(), "failed write cannot claim persistence");
@@ -115,12 +120,12 @@ public final class CourierKernelChecks {
             var denied = j.stop("foreign", "foreign", j.epoch(), true, true);
             check(!denied.accepted() && !j.cancelRequested(), "control authority independent");
         });
-        scenario("newer stop rejects stale resume", () -> {
+        scenario("M09", "newer stop rejects stale resume", () -> {
             var j = job(64, 16); j.stop("s1", "owner", 0, false, true);
             long old = j.epoch(); j.stop("s2", "owner", old, false, true);
             check(j.resume("owner", old).equals("UNAUTHORIZED_OR_STALE") && j.fenced(), "stale resume fence");
         });
-        scenario("recovery reads use protected finite reserve and denial consumes it", () -> {
+        scenario("M10", "recovery reads use protected finite reserve and denial consumes it", () -> {
             var j = new CourierKernel.Job("j", "owner", "r", 16, 64, 16, 1, 6, 6);
             j.pickup("l", 16, false, ALLOW); j.markUncertain();
             check(j.productionLeft() == 0 && j.recoveryLeft() == 6, "reserve isolated");
@@ -130,7 +135,7 @@ public final class CourierKernelChecks {
             check(j.snapshotCopy().recoveryPass(true) == 0, "snapshot cannot renew quota");
             check(j.stop("s", "owner", j.epoch(), false, true).accepted(), "control independent of work");
         });
-        scenario("unknown physical context and missing budget history block effects", () -> {
+        scenario("M11", "unknown physical context and missing budget history block effects", () -> {
             var unknown = new CourierKernel.Context(true, true, false, true, true, true, true);
             var j = job(64, 16);
             check(j.pickup("l", 16, false, unknown).equals("CONTEXT_BLOCKED"), "unknown custody");
@@ -139,7 +144,7 @@ public final class CourierKernelChecks {
             check(copy.pickup("new", 16, false, ALLOW).equals("BUDGET_UNKNOWN"), "no default budget");
             check(copy.stop("s", "owner", 0, false, true).accepted(), "record stop still available");
         });
-        scenario("continuation receipts cannot consume the protected stop capacity", () -> {
+        scenario("M12", "continuation receipts cannot consume the protected stop capacity", () -> {
             var j = new CourierKernel.Job("j", "owner", "r", 64, 64, 1, 100, 6, 6,
                     new CourierKernel.RetryPolicy(java.util.stream.LongStream.rangeClosed(1, 63).boxed().toList(), 1000, 100));
             for (int i = 0; i < 16; i++) {
@@ -149,7 +154,7 @@ public final class CourierKernelChecks {
             }
             check(j.stop("protected-stop", "owner", j.epoch(), false, true).accepted(), "reserved stop after receipt pressure");
         });
-        scenario("control retention exhaustion refuses resume before losing future stop capacity", () -> {
+        scenario("M13", "control retention exhaustion refuses resume before losing future stop capacity", () -> {
             var j = job(64, 16);
             for (int i = 0; i < 16; i++) {
                 check(j.stop("s" + i, "owner", j.epoch(), false, true).accepted(), "finite retained stop");
@@ -158,7 +163,7 @@ public final class CourierKernelChecks {
             }
             check(j.fenced(), "exhaustion leaves dispatch disabled");
         });
-        scenario("operation and original-request collisions reject changed intent", () -> {
+        scenario("M14", "operation and original-request collisions reject changed intent", () -> {
             var j = job(64, 16); j.pickup("l", 16, false, ALLOW);
             boolean collision = false;
             try { j.pickup("l", 7, false, ALLOW); } catch (IllegalArgumentException e) { collision = true; }
@@ -166,7 +171,7 @@ public final class CourierKernelChecks {
             try { j.duplicateOriginalRequest("request", 12); } catch (IllegalArgumentException e) { collision = true; }
             check(collision && j.cargo() == 16 && j.source() == 48, "request collision no new effect");
         });
-        scenario("completed jobs and closed batches cannot restart normal work under new operation IDs", () -> {
+        scenario("M15", "completed jobs and closed batches cannot restart normal work under new operation IDs", () -> {
             var complete = job(64, 16); deliveredBatch(complete, 16, false);
             int production = complete.productionLeft(), service = complete.serviceLeft();
             check(complete.arriveDestination("late-destination", ALLOW).equals("TERMINAL"), "terminal movement fenced");
@@ -178,7 +183,7 @@ public final class CourierKernelChecks {
             check(restored.arriveDestination("late", ALLOW).equals("BATCH_CLOSED"), "closed batch needs owner continuation");
             check(restored.state() == CourierKernel.State.SUSPENDED && restored.delivered() == 10, "no automatic resumption");
         });
-        scenario("retained-cargo recovery requires current owner rights and fresh destination context", () -> {
+        scenario("M16", "retained-cargo recovery requires current owner rights and fresh destination context", () -> {
             var j = partialJob().snapshotCopy(); int p = j.productionLeft();
             int r = j.recoveryLeft();
             check(j.resumeRetainedCargo("foreign", "stranger", j.epoch(), "r1", evidence(j), ALLOW)
@@ -202,7 +207,7 @@ public final class CourierKernelChecks {
             check(j.state() == CourierKernel.State.SUCCEEDED && j.source() == 48 && j.destination() == 16 && j.cargo() == 0,
                     "full recovered batch and service");
         });
-        scenario("denied cargo reads and unattributable matching totals cannot clear recovery", () -> {
+        scenario("M17", "denied cargo reads and unattributable matching totals cannot clear recovery", () -> {
             var j = partialJob().snapshotCopy();
             var deniedRead = new CourierKernel.CargoEvidence(j.id, j.request, 16, 6, 10, false, true);
             check(j.resumeRetainedCargo("denied", "owner", j.epoch(), "r1", deniedRead, ALLOW).equals("READ_DENIED"), "read gate independent");
@@ -215,7 +220,7 @@ public final class CourierKernelChecks {
             var wrongJob = new CourierKernel.CargoEvidence("other-job", other.request, 16, 6, 10, true, true);
             check(other.resumeRetainedCargo("wrong", "owner", other.epoch(), "r1", wrongJob, ALLOW).equals("EVIDENCE_MISMATCH"), "lineage matters");
         });
-        scenario("cancelled or uncertain custody cannot become eligible through a matching recovery request", () -> {
+        scenario("M18", "cancelled or uncertain custody cannot become eligible through a matching recovery request", () -> {
             var cancelled = partialJob(); cancelled.stop("cancel", "owner", 0, true, true);
             var c = cancelled.snapshotCopy();
             check(c.resumeRetainedCargo("r", "owner", c.epoch(), "r1", evidence(c), ALLOW).equals("CANCELLED"), "cancel persists");
@@ -224,7 +229,7 @@ public final class CourierKernelChecks {
             check(u.resumeRetainedCargo("r", "owner", u.epoch(), "r1", evidence(u), ALLOW).equals("UNCERTAIN"), "aggregate proof cannot resolve unknown effect");
             check(u.uncertain() && u.fenced(), "uncertainty preserved");
         });
-        scenario("recovery command replay cannot undo a newer stop", () -> {
+        scenario("M19", "recovery command replay cannot undo a newer stop", () -> {
             var j = partialJob().snapshotCopy(); var proof = evidence(j); long oldEpoch = j.epoch();
             check(j.resumeRetainedCargo("r", "owner", oldEpoch, "r1", proof, ALLOW).equals("RESUME_VALIDATED"), "initial continuation");
             int recovery = j.recoveryLeft(); j.stop("newer-stop", "owner", j.epoch(), false, true); long stopEpoch = j.epoch();
@@ -235,7 +240,7 @@ public final class CourierKernelChecks {
             catch (IllegalArgumentException e) { collision = true; }
             check(collision, "changed continuation intent collides");
         });
-        scenario("partial and zero insertions use cumulative increasing backoff across restoration", () -> {
+        scenario("M20", "partial and zero insertions use cumulative increasing backoff across restoration", () -> {
             var j = partialJob(); int p = j.productionLeft();
             check(j.nextInsertionTick() == 2 && j.insertionAttempts() == 1, "first declared delay");
             check(j.unload("second", 0, ALLOW).equals("RETRY_WAIT") && j.productionLeft() == p, "early eligibility is not an action");
@@ -251,7 +256,7 @@ public final class CourierKernelChecks {
             j.advanceActiveTicks(1); check(j.unload("third", 10, ALLOW).equals("SUCCEEDED"), "same queued identity can execute when due");
             check(j.insertionAttempts() == 3 && j.delivered() == 16 && j.cargo() == 0, "exactly third attempt finishes");
         });
-        scenario("insertion retry exhaustion cannot be renewed by owner or restoration", () -> {
+        scenario("M21", "insertion retry exhaustion cannot be renewed by owner or restoration", () -> {
             var j = job(64, 16); j.pickup("l", 16, false, ALLOW); j.arriveDestination("d", ALLOW);
             j.unload("u1", 0, ALLOW); j.advanceActiveTicks(2); j.unload("u2", 0, ALLOW);
             j.advanceActiveTicks(4); j.unload("u3", 0, ALLOW); int p = j.productionLeft();
@@ -261,7 +266,7 @@ public final class CourierKernelChecks {
             check(j.resumeRetainedCargo("r", "owner", j.epoch(), "r1", evidence(j), ALLOW).equals("DELIVERY_EXHAUSTED"), "owner cannot reset attempts");
             check(j.source() == 48 && j.cargo() == 16 && j.delivered() == 0, "exhaustion retains cargo");
         });
-        scenario("no-progress deadline is not extended by zero effects or new identities", () -> {
+        scenario("M22", "no-progress deadline is not extended by zero effects or new identities", () -> {
             var j = new CourierKernel.Job("j", "owner", "r", 16, 64, 16, 20, 6, 6,
                     new CourierKernel.RetryPolicy(List.of(2L, 4L), 100, 5));
             j.pickup("l", 16, false, ALLOW); j.arriveDestination("d", ALLOW); j.unload("u", 0, ALLOW);
@@ -271,7 +276,7 @@ public final class CourierKernelChecks {
             check(j.resumeRetainedCargo("r", "owner", j.epoch(), "r1", evidence(j), ALLOW).equals("NO_PROGRESS_EXHAUSTED"), "no renewed deadline");
             check(j.cargo() == 16 && j.delivered() == 0 && j.insertionAttempts() == 1, "expired proposal performs no effect");
         });
-        scenario("active deadline fences delivery while bounded recovery and stop remain available", () -> {
+        scenario("M23", "active deadline fences delivery while bounded recovery and stop remain available", () -> {
             var j = new CourierKernel.Job("j", "owner", "r", 16, 64, 16, 20, 6, 6,
                     new CourierKernel.RetryPolicy(List.of(2L, 4L), 5, 20));
             j.pickup("l", 16, false, ALLOW); j.arriveDestination("d", ALLOW); j.advanceActiveTicks(5);
@@ -283,7 +288,7 @@ public final class CourierKernelChecks {
                     .equals("ACTIVE_DEADLINE_EXHAUSTED"), "clock retained");
             check(j.cargo() == 16 && j.delivered() == 0, "no late delivery");
         });
-        scenario("real material progress advances the no-progress boundary without renewing attempt caps", () -> {
+        scenario("M24", "real material progress advances the no-progress boundary without renewing attempt caps", () -> {
             var j = new CourierKernel.Job("j", "owner", "r", 16, 64, 16, 20, 6, 6,
                     new CourierKernel.RetryPolicy(List.of(2L, 4L), 100, 5));
             j.pickup("l", 16, false, ALLOW); j.arriveDestination("d", ALLOW); j.unload("u1", 4, ALLOW);
@@ -292,12 +297,12 @@ public final class CourierKernelChecks {
             j.advanceActiveTicks(1); check(j.unload("u3", 8, ALLOW).equals("SUCCEEDED"), "finish before new no-progress boundary");
             check(j.insertionAttempts() == 3 && j.delivered() == 16, "progress does not renew attempts");
         });
-        scenario("partial-pickup cargo cannot be promoted into a completed load by recovery", () -> {
+        scenario("M25", "partial-pickup cargo cannot be promoted into a completed load by recovery", () -> {
             var j = job(64, 16); j.pickup("partial", 7, false, ALLOW); j = j.snapshotCopy();
             check(j.resumeRetainedCargo("r", "owner", j.epoch(), "r1", evidence(j), ALLOW).equals("CARGO_NOT_ELIGIBLE"), "load certificate still required");
             check(j.source() == 57 && j.cargo() == 7 && !j.succeeded(CourierKernel.Step.LOAD), "no source repair or fabricated success");
         });
-        scenario("invalid time and retry bounds are rejected without moving model state", () -> {
+        scenario("M26", "invalid time and retry bounds are rejected without moving model state", () -> {
             boolean rejected = false;
             try { new CourierKernel.RetryPolicy(List.of(4L, 2L), 100, 20); }
             catch (IllegalArgumentException e) { rejected = true; }
@@ -309,7 +314,7 @@ public final class CourierKernelChecks {
             try { j.advanceActiveTicks(-1); } catch (IllegalArgumentException e) { rejected = true; }
             check(rejected && j.activeTick() == 0 && j.source() == 64, "clock cannot run backwards");
         });
-        scenario("owner continuation cannot start a new pickup after cumulative insertion attempts are exhausted", () -> {
+        scenario("M27", "owner continuation cannot start a new pickup after cumulative insertion attempts are exhausted", () -> {
             var j = job(64, 4);
             for (int i = 0; i < 3; i++) {
                 check(j.pickup("l" + i, 4, false, ALLOW).equals("SUCCEEDED"), "one capacity batch");
@@ -323,7 +328,13 @@ public final class CourierKernelChecks {
         });
         out.println("{\"scenarios_passed\":" + passed.size() + ",\"assertions\":" + assertions
                 + ",\"scope\":\"candidate_in_memory_model_only\",\"java_version\":\"" + System.getProperty("java.version") + "\",\"scenarios\":[");
-        for (int i = 0; i < passed.size(); i++) out.println("  \"" + passed.get(i) + "\"" + (i + 1 < passed.size() ? "," : ""));
+        for (int i = 0; i < passed.size(); i++) out.println("  \"" + passed.get(i).name() + "\"" + (i + 1 < passed.size() ? "," : ""));
+        out.println("],\"scenario_results\":[");
+        for (int i = 0; i < passed.size(); i++) {
+            var result = passed.get(i);
+            out.println("  {\"id\":\"" + result.id() + "\",\"name\":\"" + result.name()
+                    + "\",\"assertions\":" + result.assertions() + "}" + (i + 1 < passed.size() ? "," : ""));
+        }
         out.println("]}");
     }
 }

@@ -25,6 +25,8 @@ jobs:
         with:
           distribution: temurin
           java-version: '25'
+      - name: Test scenario coverage enforcement
+        run: python3 -B models/courier/test_runner.py
       - name: Run the standalone model and record source hashes
         run: |
           python3 -B models/courier/run-model.py

@@ -1,0 +1,164 @@
+{
+  "schema_version": 1,
+  "reviewed_source_commit": "5f765847cde9f4ca5556dd89334c98391ff80e5e",
+  "minimum_total_assertions": 210,
+  "scenarios": [
+    {
+      "id": "M01",
+      "name": "normal delivery requires final service",
+      "minimum_assertions": 4
+    },
+    {
+      "id": "M02",
+      "name": "source shortfall suspends and needs same-job owner continuation",
+      "minimum_assertions": 16
+    },
+    {
+      "id": "M03",
+      "name": "capacity-limited batch is not a source shortfall",
+      "minimum_assertions": 7
+    },
+    {
+      "id": "M04",
+      "name": "nonterminal partial pickup holds cargo and blocks downstream",
+      "minimum_assertions": 6
+    },
+    {
+      "id": "M05",
+      "name": "partial unload blocks home but permits separately scoped safety service",
+      "minimum_assertions": 5
+    },
+    {
+      "id": "M06",
+      "name": "retained cargo needs owner validation after simulated restoration",
+      "minimum_assertions": 5
+    },
+    {
+      "id": "M07",
+      "name": "record stop works under physical uncertainty and cancellation remains open",
+      "minimum_assertions": 6
+    },
+    {
+      "id": "M08",
+      "name": "stop survives exhausted model work and failed write is explicit",
+      "minimum_assertions": 4
+    },
+    {
+      "id": "M09",
+      "name": "newer stop rejects stale resume",
+      "minimum_assertions": 1
+    },
+    {
+      "id": "M10",
+      "name": "recovery reads use protected finite reserve and denial consumes it",
+      "minimum_assertions": 6
+    },
+    {
+      "id": "M11",
+      "name": "unknown physical context and missing budget history block effects",
+      "minimum_assertions": 4
+    },
+    {
+      "id": "M12",
+      "name": "continuation receipts cannot consume the protected stop capacity",
+      "minimum_assertions": 33
+    },
+    {
+      "id": "M13",
+      "name": "control retention exhaustion refuses resume before losing future stop capacity",
+      "minimum_assertions": 33
+    },
+    {
+      "id": "M14",
+      "name": "operation and original-request collisions reject changed intent",
+      "minimum_assertions": 2
+    },
+    {
+      "id": "M15",
+      "name": "completed jobs and closed batches cannot restart normal work under new operation IDs",
+      "minimum_assertions": 15
+    },
+    {
+      "id": "M16",
+      "name": "retained-cargo recovery requires current owner rights and fresh destination context",
+      "minimum_assertions": 11
+    },
+    {
+      "id": "M17",
+      "name": "denied cargo reads and unattributable matching totals cannot clear recovery",
+      "minimum_assertions": 6
+    },
+    {
+      "id": "M18",
+      "name": "cancelled or uncertain custody cannot become eligible through a matching recovery request",
+      "minimum_assertions": 4
+    },
+    {
+      "id": "M19",
+      "name": "recovery command replay cannot undo a newer stop",
+      "minimum_assertions": 4
+    },
+    {
+      "id": "M20",
+      "name": "partial and zero insertions use cumulative increasing backoff across restoration",
+      "minimum_assertions": 9
+    },
+    {
+      "id": "M21",
+      "name": "insertion retry exhaustion cannot be renewed by owner or restoration",
+      "minimum_assertions": 4
+    },
+    {
+      "id": "M22",
+      "name": "no-progress deadline is not extended by zero effects or new identities",
+      "minimum_assertions": 3
+    },
+    {
+      "id": "M23",
+      "name": "active deadline fences delivery while bounded recovery and stop remain available",
+      "minimum_assertions": 5
+    },
+    {
+      "id": "M24",
+      "name": "real material progress advances the no-progress boundary without renewing attempt caps",
+      "minimum_assertions": 4
+    },
+    {
+      "id": "M25",
+      "name": "partial-pickup cargo cannot be promoted into a completed load by recovery",
+      "minimum_assertions": 2
+    },
+    {
+      "id": "M26",
+      "name": "invalid time and retry bounds are rejected without moving model state",
+      "minimum_assertions": 3
+    },
+    {
+      "id": "M27",
+      "name": "owner continuation cannot start a new pickup after cumulative insertion attempts are exhausted",
+      "minimum_assertions": 8
+    }
+  ],
+  "known_gaps": [
+    {
+      "id": "KG01",
+      "name": "empty restoration before first pickup remains fenced"
+    },
+    {
+      "id": "KG02",
+      "name": "empty restoration after unload before service remains fenced"
+    },
+    {
+      "id": "KG03",
+      "name": "empty restoration after incomplete batch service remains fenced"
+    },
+    {
+      "id": "KG04",
+      "name": "post-completion pause overwrites terminal state"
+    },
+    {
+      "id": "KG05",
+      "name": "post-completion cancel overwrites terminal state"
+    }
+  ]
+}
