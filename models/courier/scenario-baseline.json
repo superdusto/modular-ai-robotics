@@ -159,6 +159,10 @@
     {
       "id": "KG05",
       "name": "post-completion cancel overwrites terminal state"
+    },
+    {
+      "id": "KG06",
+      "name": "continuation admits pickup with insufficient remaining production work"
     }
   ]
 }

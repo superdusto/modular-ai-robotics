@@ -21,7 +21,7 @@ DEFAULT_REPORT = MODEL_ROOT.parent.parent / "build/courier-model/model-results.j
 SCOPE = "candidate_in_memory_model_only"
 BASELINE_PATH = MODEL_ROOT / "scenario-baseline.json"
 REQUIRED_IDS = {f"M{i:02d}" for i in range(1, 28)}
-REQUIRED_GAP_IDS = {f"KG{i:02d}" for i in range(1, 6)}
+REQUIRED_GAP_IDS = {f"KG{i:02d}" for i in range(1, 7)}
 
 
 def indexed(records, count_field=None):
@@ -52,7 +52,7 @@ def validate_baseline(baseline):
             or sum(item["minimum_assertions"] for item in scenarios.values()) < 210):
         raise ValueError("The reviewed baseline must retain at least 210 assertions.")
     if not REQUIRED_GAP_IDS.issubset(indexed(baseline.get("known_gaps"))):
-        raise ValueError("The known-gap baseline must retain KG01-KG05 until reviewed fixes replace them.")
+        raise ValueError("The known-gap baseline must retain KG01-KG06 until reviewed fixes replace them.")
 
 
 def validate_model_result(result, baseline):

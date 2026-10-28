@@ -125,7 +125,7 @@ class CoverageGuardTests(unittest.TestCase):
     def test_manifest_cannot_silently_drop_known_gap(self):
         baseline = copy.deepcopy(BASELINE)
         baseline["known_gaps"].pop()
-        with self.assertRaisesRegex(ValueError, "KG01-KG05"):
+        with self.assertRaisesRegex(ValueError, "KG01-KG06"):
             RUNNER.validate_baseline(baseline)
 
     def test_known_gap_observations_are_separate(self):
@@ -135,7 +135,7 @@ class CoverageGuardTests(unittest.TestCase):
         result = valid_gaps()
         result["observations"].pop()
         result["assertions"] -= 1
-        with self.assertRaisesRegex(ValueError, "KG05"):
+        with self.assertRaisesRegex(ValueError, "KG06"):
             RUNNER.validate_known_gaps(result, BASELINE)
 
     def test_known_gaps_cannot_claim_fixed_status(self):
