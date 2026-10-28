@@ -4,6 +4,14 @@ The owner selected MIT for original MAR code and examples, reserved rights for o
 
 The detailed publication package and contribution procedure are proposed in [ADR-0004](decisions/0004-code-and-asset-licensing.md). The existing significant-implementation contribution hold remains in effect pending maintainer adoption and explicit authorization in [CONTRIBUTING](../CONTRIBUTING.md). The owner's separate existing-material authority and draft-publication confirmation is recorded in that ADR; it is not an independent rights audit or a GitHub approving review.
 
+Published license grants apply to the copies they accompany. A proposed ADR status concerns governance adoption of the final policy and does not make a published MIT grant or asset permission inoperative. Before merge, record the maintainer's explicit acceptance of the final reviewed policy revision, update ADR-0004 and its index to reflect adoption, and reconcile the published policy status. Keep the separate significant-implementation hold unless the maintainer expressly lifts it.
+
+## License scope and notices
+
+The [canonical LICENSE](../LICENSE) contains only the authentic MIT text. Its project-specific scope is described here and in the README: original Modular AI Robotics source code, documentation, build tools, tests, schemas, functional data definitions, example scripts and behavior packs are MIT-covered.
+
+Original artwork, robot models, textures, icons, sounds and logo artwork are excluded from that MIT scope and governed by [ASSET_LICENSE.md](../ASSET_LICENSE.md). Record their exact paths, credits and asset-specific notices in the inventory below. A file is not a reserved asset merely because it is inside a Minecraft assets directory. Third-party material remains subject to its own terms and notices. Contributors retain copyright in material they own; the project credit does not transfer their ownership to the maintainer.
+
 ## License map
 
 | Material | Terms |
@@ -22,11 +30,13 @@ MIT requires retaining its copyright and permission notice in copies or substant
 
 Code forks are permitted under MIT. A fork needs replacement artwork or a separate permission covering reuse of reserved MAR assets. The asset notice expressly allows normal gameplay, screenshots/videos and distribution of unmodified official releases in modpacks.
 
+The [existing-release permission clause](../ASSET_LICENSE.md#permissions-for-existing-releases) preserves the notice attached to compliant copies of a lawfully distributed official release. Later changes to the README's channels or to asset terms do not retroactively withdraw those permissions; compliance requirements and applicable-law limits still apply.
+
 ## Reserved-asset inventory
 
 No original robot artwork, models, textures, icons, sounds or logo files are present in the repository baseline for this package (`34bec980f4f909782aacf82da7c3c26cc2908b19`). No asset rights were audited or inferred from a bot account.
 
-Before accepting a reserved asset, add its exact repository path, copyright holder/credit, provenance, applicable permission and express maintainer-grant record here. Record the full reviewed revision identifying the contribution policy and public asset notice to which the rights holder assented. Maintain a separate entry or clearly bounded path group for every rights scope. Do not reserve an entire resource directory simply because Minecraft stores art and functional definitions together.
+Before accepting a reserved asset, add its exact repository path, copyright holder/credit, provenance, applicable permission and express maintainer-grant record here. Record the full immutable revision(s) of `CONTRIBUTING.md` and `ASSET_LICENSE.md` and the affected paths in the declaration itself as well as this inventory. Each reserved asset must carry or clearly reference its asset-specific notice, using an appropriate file or precisely scoped directory notice. Maintain a separate entry or clearly bounded path group for every rights scope. Do not reserve an entire resource directory simply because Minecraft stores art and functional definitions together.
 
 | Repository path | Rights holder / credit | Provenance, terms and express grant record |
 | --- | --- | --- |
@@ -42,10 +52,11 @@ The asset grant permits maintainers to reproduce, adapt and incorporate the iden
 
 The owner expressly confirmed authority to license the existing original material in reviewed commit `2b5090b78495aae1da2aadf0e615843ec636efa6` and authorized draft PR publication in private project chat on 2026-10-27. No third-party exception was identified in that reply. This is an owner attestation, not proof of every file's provenance; third-party terms and newly identified exceptions still require review.
 
-Before adopting the detailed package, review the exact notices, contribution procedure and any material rights exception. No additional declaration, sign-off or consent may be invented for the maintainer. Record implementation authorization separately when lifting the hold; publication of the licensing proposal does not establish that Minecraft behavior is implemented or verified.
+Before adopting the detailed package, review the exact notices, contribution procedure and any material rights exception. Record express maintainer acceptance of the final reviewed policy commit and reconcile the ADR/index status before merging into main. Direction selection and draft-publication consent do not supply that final adoption. No additional declaration, sign-off or consent may be invented for the maintainer. Record implementation authorization separately when lifting the hold; publication of the licensing package does not establish that Minecraft behavior is implemented or verified.
 
 ## References
 
 - [Authentic MIT text](https://spdx.org/licenses/MIT.txt)
+- [GitHub guidance on keeping the canonical license simple and explaining mixed licensing elsewhere](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository)
 - [Create's code/assets split](https://github.com/Creators-of-Create/Create/blob/mc1.21.1/dev/LICENSE.md), inspected 2026-10-27; a reference pattern, not MAR's asset permission text
 - [Linux Foundation guidance on generation-tool terms and third-party material](https://www.linuxfoundation.org/legal/generative-ai)

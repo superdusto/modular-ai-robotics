@@ -28,6 +28,8 @@ The owner selected MIT for original code, documentation, schemas and examples, a
 
 **Do not submit significant implementation code or assets until the maintainer adopts the detailed licensing/contribution package and explicitly authorizes those submissions.** This proposal records the direction; it does not lift the hold. Research, architecture discussion and test proposals may continue under the existing guidance.
 
+Published license grants apply to their accompanying copies while detailed-policy adoption is pending. This contribution hold controls acceptance of new submissions and does not revoke those published permissions. Final adoption must identify the exact reviewed policy revision; it does not itself authorize significant implementation submissions.
+
 ## Contribution rights (proposed)
 
 Contributors retain copyright in material they own. Submit original code and other MIT-covered material under [MIT](LICENSE). Original reserved-asset contributions require the express maintainer grant below and permission to offer the public uses in [the asset notice](ASSET_LICENSE.md), unless a separately reviewed applicable license is recorded. No copyright assignment or exclusive relicensing permission is requested. Independent packs not being incorporated into MAR retain their creators' chosen licenses.
@@ -46,7 +48,11 @@ The grant covers only the identified contribution, its authorized adaptations an
 
 For substantive contributions, an identified human or authorized organizational representative must review the actual diff and expressly confirm authority to contribute it under the applicable terms. Record the covered full commit IDs or PR head alongside the declaration. A suitable statement for a human to make is:
 
-> I reviewed the contribution at [full commit SHA]. I have authority to submit the material under its stated terms, including any necessary employer or third-party permissions. For reserved assets in this contribution, I expressly grant the maintainer permissions stated in this contribution policy, with public uses governed by the asset notice at that reviewed revision. I have disclosed known third-party material and material generation-tool restrictions relevant to this contribution.
+> Contribution reviewed: [CONTRIBUTION_FULL_SHA]. Reserved asset paths covered: [EXACT_REPOSITORY_PATHS, or NONE].
+>
+> I have authority to submit the identified material under its stated terms, including any necessary employer or third-party permissions. For the listed reserved assets, I expressly grant MAR's maintainers the permissions in `CONTRIBUTING.md` at [POLICY_FULL_SHA], with public uses governed by `ASSET_LICENSE.md` at [ASSET_NOTICE_FULL_SHA]. I have disclosed known third-party material and material generation-tool restrictions relevant to this contribution.
+
+Replace every SHA placeholder with a full immutable commit ID, and list the exact asset paths in the declaration itself. If no reserved assets are included, use `NONE` and mark the asset-grant revision fields `NOT APPLICABLE`. If different asset groups use different terms, provide separate path-to-policy/notice-revision entries. Branch names, moving tags, or an unqualified reference to "the current notice" do not identify the grant terms.
 
 This is a template, not a certification already made by the maintainer. A bot may record a declaration only when the human has actually made or expressly authorized it for that contribution. Bot authorship, a merged PR, an AI review or a copyright line cannot substitute for assent. Substantive later edits require renewed confirmation covering the accepted revision.
 

@@ -2,6 +2,8 @@
 
 Original Modular AI Robotics artwork, robot models, textures, icons, sounds and logo artwork are reserved to their respective copyright holders, except for the permissions below. Identify each reserved file and its copyright credit in the [asset inventory](docs/licensing.md#reserved-asset-inventory). The project owner's selected public credit is **superdusto**; other contributors retain their own copyright and credit.
 
+These asset-specific terms, rather than the root MIT terms, govern the reserved files identified by their notices and the inventory. They do not narrow the MIT grant for code or other MIT-covered material.
+
 ## Permissions granted
 
 Subject to preserving applicable bundled copyright and license notices, the rights holders grant a nonexclusive, royalty-free permission to:
@@ -10,7 +12,13 @@ Subject to preserving applicable bundled copyright and license notices, the righ
 2. Show the assets in gameplay screenshots, recordings, videos and streams, including reviews and tutorials. A separate on-screen credit is not required by this permission.
 3. Include and redistribute unmodified official Modular AI Robotics releases, including their bundled assets, in modpacks. Modpack configuration, external scripts and behavior packs may configure or interact with the release without changing the reserved asset files.
 
-An official release is a release published by the project maintainer through this repository or a distribution channel linked by the project's README. Keep the bundled notices with redistributed releases. Describe the included mod accurately; this permission does not endorse the modpack or authorize presenting it as an official MAR product.
+An official release is a release published by the project maintainer through this repository or a distribution channel linked by the project's README at the time of publication. Later removal or replacement of a channel link does not make that release unofficial. Keep the bundled notices with redistributed releases. Describe the included mod accurately; this permission does not endorse the modpack or authorize presenting it as an official MAR product.
+
+## Permissions for existing releases
+
+For copies of an official release lawfully obtained or distributed under the asset notice accompanying that release, the permissions granted by that notice continue under that version. Compliant copies may continue to be used and redistributed, including in modpacks and archives, after official channels or later asset notices change. A later README edit or notice revision does not withdraw or narrow permissions already granted for those copies.
+
+These continuing permissions remain conditional on compliance with the notice that accompanied the release, including its notice-preservation requirements. Uses in breach of that notice are not authorized by this continuation clause, and the clause does not waive nonwaivable statutory rights or remedies available under applicable law. New permissions for later releases do not automatically expand the terms attached to an earlier copy.
 
 ## Uses requiring separate permission
 

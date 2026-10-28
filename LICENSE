@@ -1,22 +1,4 @@
-Licensing scope
-===============
-
-The MIT license below covers original Modular AI Robotics source code,
-documentation, build tools, tests, schemas, functional data definitions and
-example scripts or behavior packs.
-
-Original artwork, robot models, textures, icons, sounds and logo artwork are
-excluded from this MIT grant and are governed by ASSET_LICENSE.md. Their paths
-and credits must be recorded in the reserved-asset inventory in
-docs/licensing.md. A file is not a reserved asset merely because it is inside
-a Minecraft assets directory.
-
-Third-party material remains subject to its own applicable terms and notices.
-Contributors retain copyright in material they own; this notice does not
-transfer their ownership to the project maintainer.
-
 MIT License
-===========
 
 Copyright (c) 2026 superdusto
 

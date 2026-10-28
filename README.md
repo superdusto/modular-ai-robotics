@@ -118,3 +118,5 @@ For sensitive security concerns, see [SECURITY.md](SECURITY.md).
 The owner selected **MIT for original code, documentation, schemas and examples**, and **reserved rights for original artwork and sounds** with explicit gameplay, screenshot/video and official-release modpack permissions. Independent community scripts and behavior packs remain under their creators' chosen terms.
 
 See [LICENSE](LICENSE), [asset permissions](ASSET_LICENSE.md), the [license map and inventory](docs/licensing.md), and [proposed ADR-0004](docs/decisions/0004-code-and-asset-licensing.md). The selected public copyright credit is **superdusto**. MIT requires preservation of its copyright/license notices; it does not require prominent public credit or patches to be submitted upstream.
+
+Published license grants apply to the copies they accompany. ADR-0004's proposed status tracks pending maintainer adoption of the final reviewed policy; it does not suspend those grants. The separate contribution hold concerns acceptance of significant new submissions. Original reserved assets carry the asset-specific notice rather than the root MIT terms; third-party material keeps its own terms.
