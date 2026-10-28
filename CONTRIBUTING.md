@@ -3,7 +3,7 @@
 Thank you for your interest in Modular AI Robotics.
 
 ## Current phase
-This project is in **research and architecture planning**. Please start with proposals, test plans, documented mod/API compatibility, and design reviews rather than large unrequested implementations.
+This project is in **architecture planning and standalone modeling**. The owner authorized the [candidate courier model submission](models/courier/README.md#authorization-and-contribution-review), including its checks and portable runner. Other significant implementations require separate authorization. Please start with proposals, test plans, documented mod/API compatibility, and design reviews rather than large unrequested implementations.
 
 ## Good first contributions
 - Version- and source-backed platform comparisons.
@@ -26,7 +26,7 @@ Open or discuss a focused issue describing purpose, constraints, relevant Minecr
 
 The adopted policy uses MIT for original code, documentation, schemas and examples, and [reserved original asset rights with explicit permitted uses](ASSET_LICENSE.md). See the [license map](docs/licensing.md) and [ADR-0004](docs/decisions/0004-code-and-asset-licensing.md#evidence-and-uncertainty) for the accepted revision and adoption evidence.
 
-**Do not submit significant implementation code or assets until the maintainer separately and explicitly authorizes those submissions.** Licensing/contribution-policy adoption is complete; the implementation contribution hold remains. Research, architecture discussion and test proposals may continue under the existing guidance.
+**Do not submit significant implementation code or assets until the maintainer separately and explicitly authorizes those submissions.** Licensing/contribution-policy adoption is complete; the implementation contribution hold remains outside the expressly authorized standalone courier model submission. NeoForge scaffolding and Minecraft integration have not been authorized. Scope authorization does not replace the actual human contribution-rights declaration below. Research, architecture discussion and test proposals may continue under the existing guidance.
 
 Published license grants apply to their accompanying copies. This contribution hold controls acceptance of new submissions and does not revoke those published permissions. The implementation-transition decision and initial maintainer intake checklist are tracked in [issue #9](https://github.com/superdusto/modular-ai-robotics/issues/9).
 
