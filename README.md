@@ -4,7 +4,7 @@
 
 Modular AI Robotics is a proposed Minecraft mod for useful, persistent robotic companions: ground robots, flying drones, humanoid machines, and eventually larger industrial mechs. Robots should be able to work alongside a player, manage resources, assist with construction and defense, and recover from interruptions—without a paid AI service or an internet connection.
 
-> **Status: Research and architecture planning.** No playable mod or prototype is available yet. The initial development target is **Minecraft Java Edition 26.1.2 + NeoForge + JDK 25** ([ADR-0001](docs/decisions/0001-initial-platform.md)). The **standalone-core, optional-integration architecture** is accepted ([ADR-0002](docs/decisions/0002-standalone-core-optional-integrations.md)). The **MIT code / reserved-asset licensing and contribution policy** is accepted ([ADR-0004](docs/decisions/0004-code-and-asset-licensing.md)). Implementation details and explicit authorization for significant implementation submissions remain open.
+> **Status: Architecture planning and standalone modeling.** A [candidate courier model](models/courier/README.md) is available for reproducible checks; no playable Minecraft mod is available. The initial development target is **Minecraft Java Edition 26.1.2 + NeoForge + JDK 25** ([ADR-0001](docs/decisions/0001-initial-platform.md)). The **standalone-core, optional-integration architecture** is accepted ([ADR-0002](docs/decisions/0002-standalone-core-optional-integrations.md)). The **MIT code / reserved-asset licensing and contribution policy** is accepted ([ADR-0004](docs/decisions/0004-code-and-asset-licensing.md)). Implementation authorization is limited to the standalone model; Minecraft integration and other significant submissions remain subject to separate authorization.
 
 ## Vision
 
@@ -95,6 +95,16 @@ The [courier scope and proposed contract](docs/courier/README.md) records the ow
 
 See the [Development Roadmap](docs/development-roadmap.md), [Verification Plan](docs/verification-plan.md), and [Player Experience](docs/player-experience.md).
 
+### Run the standalone courier model
+
+With Python 3 and an installed JDK 25:
+
+```sh
+python3 -B models/courier/run-model.py
+```
+
+The [model guide](models/courier/README.md) describes its 27 scenarios, portable JDK selection, generated report and known gaps. These checks use trusted in-memory fixtures; they do not execute the complete Minecraft verification cases. The [Courier Model workflow](.github/workflows/courier-model.yml) runs the same checks in CI.
+
 ## Research before implementation
 
 The **initial** Minecraft and loader target is selected: **Minecraft Java Edition 26.1.2 + NeoForge + JDK 25**. Exact loader/build-tool pinning and third-party integrations still require verification. This project is not restricted to ATM10.
@@ -109,7 +119,7 @@ Architecture decisions use a [machine-checkable ADR format](docs/decision-gate.m
 
 ## Contributing and project status
 
-Research findings, test proposals, architectural feedback, and documented compatibility evidence are welcome. Read [CONTRIBUTING.md](CONTRIBUTING.md) first. The licensing/contribution policy is adopted; the significant-implementation contribution hold remains until separate explicit maintainer authorization.
+Research findings, test proposals, architectural feedback, and documented compatibility evidence are welcome. Read [CONTRIBUTING.md](CONTRIBUTING.md) first. The licensing/contribution policy is adopted; the owner authorized this standalone model submission. Other significant implementation submissions still require separate explicit authorization, tracked in [issue #9](https://github.com/superdusto/modular-ai-robotics/issues/9).
 
 For sensitive security concerns, see [SECURITY.md](SECURITY.md).
 
@@ -119,4 +129,4 @@ The owner selected **MIT for original code, documentation, schemas and examples*
 
 See [LICENSE](LICENSE), [asset permissions](ASSET_LICENSE.md), the [license map and inventory](docs/licensing.md), and [accepted ADR-0004](docs/decisions/0004-code-and-asset-licensing.md). The selected public copyright credit is **superdusto**. MIT requires preservation of its copyright/license notices; it does not require prominent public credit or patches to be submitted upstream.
 
-Published license grants apply to the copies they accompany. [ADR-0004](docs/decisions/0004-code-and-asset-licensing.md#evidence-and-uncertainty) records the accepted revision and adoption evidence. The separate contribution hold concerns acceptance of significant new submissions and remains in place. Original reserved assets carry the asset-specific notice rather than the root MIT terms; third-party material keeps its own terms.
+Published license grants apply to the copies they accompany. [ADR-0004](docs/decisions/0004-code-and-asset-licensing.md#evidence-and-uncertainty) records the accepted revision and adoption evidence. The separate contribution hold concerns significant submissions outside the authorized model scope; actual human contribution-rights review remains required. Original reserved assets carry the asset-specific notice rather than the root MIT terms; third-party material keeps its own terms.

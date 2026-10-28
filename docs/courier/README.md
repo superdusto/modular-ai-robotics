@@ -23,7 +23,7 @@ Review follows the repository's [maintainer-led, AI-assisted process](../decisio
 | Acceptance scenarios and evidence boundaries | Proposed; full cases not run | [Courier verification plan](verification.md) |
 | Capability-driven integration ports | Proposed | [ADR-0003](../decisions/0003-capability-driven-integration-ports.md) |
 
-The first repository implementation stage should be a deterministic state/eligibility kernel and an in-memory model harness with fixed server-owned bindings. A separate pinned development workspace and real client/server tests follow. This documentation change publishes neither model code nor a playable mod; local modeling does not supply repository-reproducible runtime evidence.
+The first repository implementation stage is a [candidate state/eligibility kernel and in-memory model harness](../../models/courier/README.md) with fixed trusted fixture bindings. Its model-only submission is owner-authorized and includes reproducible checks and known gaps; it does not demonstrate real server-owned bindings. A separately authorized pinned development workspace and real client/server tests follow. The model does not provide Minecraft runtime evidence or adopt the proposed detailed contract.
 
 ## Selected scope
 
@@ -53,7 +53,7 @@ These questions should be resolved against the concrete contract and observable 
 ## Next milestones
 
 1. Review the proposed contract and verification oracles, recording adopted details separately from remaining questions.
-2. Submit a narrowly scoped standalone model and tests once contribution terms permit it; record exact source, JDK, commands and results.
+2. Review the submitted [standalone model and checks](../../models/courier/README.md), reconcile its documented gaps and complete human contribution-rights intake for the final revision; record exact source, JDK, commands and results.
 3. Establish a pinned minimal NeoForge build and isolated client/server startup.
 4. Bind real server authority, physical handlers, identity, energy and save ownership, then execute the standalone courier cases before expanding scope.
 
