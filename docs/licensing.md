@@ -2,9 +2,9 @@
 
 The owner selected MIT for original MAR code and examples, reserved rights for original artwork and sounds, and creator-chosen terms for independently authored community packs. The public copyright credit selected by the owner is **superdusto**.
 
-The detailed publication package and contribution procedure are proposed in [ADR-0004](decisions/0004-code-and-asset-licensing.md). The existing significant-implementation contribution hold remains in effect pending maintainer adoption and explicit authorization in [CONTRIBUTING](../CONTRIBUTING.md). The owner's separate existing-material authority and draft-publication confirmation is recorded in that ADR; it is not an independent rights audit or a GitHub approving review.
+The licensing and contribution policy is accepted in [ADR-0004](decisions/0004-code-and-asset-licensing.md). The owner [approved policy revision 67911cf](https://github.com/superdusto/modular-ai-robotics/pull/20#pullrequestreview-5677986426) and merged [PR #20](https://github.com/superdusto/modular-ai-robotics/pull/20) on 2026-10-28. The significant-implementation contribution hold remains pending separate explicit authorization in [CONTRIBUTING](../CONTRIBUTING.md). The earlier private authority/publication confirmation remains separately recorded and is not an independent rights audit.
 
-Published license grants apply to the copies they accompany. A proposed ADR status concerns governance adoption of the final policy and does not make a published MIT grant or asset permission inoperative. Before merge, record the maintainer's explicit acceptance of the final reviewed policy revision, update ADR-0004 and its index to reflect adoption, and reconcile the published policy status. Keep the separate significant-implementation hold unless the maintainer expressly lifts it.
+Published license grants apply to the copies they accompany. Final policy adoption is established by the approving review and merge; this follow-up reconciles the stale proposed labels left in that merged tree. It does not change the approved license permissions or lift the separate significant-implementation hold.
 
 ## License scope and notices
 
@@ -46,13 +46,13 @@ Third-party materials must carry their own notices and permissions; do not list 
 
 ## Contribution and adoption checks
 
-The [contribution procedure](../CONTRIBUTING.md#contribution-rights-proposed) proposes MIT inbound terms for covered material, a separate [nonexclusive maintainer grant for contributed reserved assets](../CONTRIBUTING.md#reserved-asset-contribution-grant-proposed), an express human rights declaration tied to the reviewed revision, and separate checks of generation-tool terms and third-party provenance. It does not adopt mandatory DCO, a separate CLA workflow or copyright assignment.
+The [contribution procedure](../CONTRIBUTING.md#contribution-rights) requires MIT inbound terms for covered material, a separate [nonexclusive maintainer grant for contributed reserved assets](../CONTRIBUTING.md#reserved-asset-contribution-grant), an express human rights declaration tied to the reviewed revision, and separate checks of generation-tool terms and third-party provenance. It does not adopt mandatory DCO, a separate CLA workflow or copyright assignment.
 
 The asset grant permits maintainers to reproduce, adapt and incorporate the identified assets, publish them in MAR's current and future releases and development materials, and authorize the public uses in the asset notice at the agreed revision. Contributors retain ownership and copyright credit. Expanding those public permissions, relicensing the assets under MIT, or using them in unrelated projects requires separate permission; a statement of authority alone supplies no such grant.
 
 The owner expressly confirmed authority to license the existing original material in reviewed commit `2b5090b78495aae1da2aadf0e615843ec636efa6` and authorized draft PR publication in private project chat on 2026-10-27. No third-party exception was identified in that reply. This is an owner attestation, not proof of every file's provenance; third-party terms and newly identified exceptions still require review.
 
-Before adopting the detailed package, review the exact notices, contribution procedure and any material rights exception. Record express maintainer acceptance of the final reviewed policy commit and reconcile the ADR/index status before merging into main. Direction selection and draft-publication consent do not supply that final adoption. No additional declaration, sign-off or consent may be invented for the maintainer. Record implementation authorization separately when lifting the hold; publication of the licensing package does not establish that Minecraft behavior is implemented or verified.
+The final-policy acceptance is now independently linked to its public approving-review record; it is not inferred from the earlier direction selection or draft-publication consent. Continue reviewing rights exceptions and actual contribution grants as new material arrives. No additional declaration, sign-off or consent may be invented for the maintainer. Record implementation authorization separately when lifting the hold; policy adoption does not establish that Minecraft behavior is implemented or verified.
 
 ## References
 

@@ -4,7 +4,7 @@
 
 Modular AI Robotics is a proposed Minecraft mod for useful, persistent robotic companions: ground robots, flying drones, humanoid machines, and eventually larger industrial mechs. Robots should be able to work alongside a player, manage resources, assist with construction and defense, and recover from interruptions—without a paid AI service or an internet connection.
 
-> **Status: Research and architecture planning.** No playable mod or prototype is available yet. The initial development target is **Minecraft Java Edition 26.1.2 + NeoForge + JDK 25** ([ADR-0001](docs/decisions/0001-initial-platform.md)). The **standalone-core, optional-integration architecture** is accepted ([ADR-0002](docs/decisions/0002-standalone-core-optional-integrations.md)). The owner selected MIT code and reserved original assets; the detailed licensing/contribution package is [proposed in ADR-0004](docs/decisions/0004-code-and-asset-licensing.md). Implementation details remain open.
+> **Status: Research and architecture planning.** No playable mod or prototype is available yet. The initial development target is **Minecraft Java Edition 26.1.2 + NeoForge + JDK 25** ([ADR-0001](docs/decisions/0001-initial-platform.md)). The **standalone-core, optional-integration architecture** is accepted ([ADR-0002](docs/decisions/0002-standalone-core-optional-integrations.md)). The **MIT code / reserved-asset licensing and contribution policy** is accepted ([ADR-0004](docs/decisions/0004-code-and-asset-licensing.md)). Implementation details and explicit authorization for significant implementation submissions remain open.
 
 ## Vision
 
@@ -109,7 +109,7 @@ Architecture decisions use a [machine-checkable ADR format](docs/decision-gate.m
 
 ## Contributing and project status
 
-Research findings, test proposals, architectural feedback, and documented compatibility evidence are welcome. Read [CONTRIBUTING.md](CONTRIBUTING.md) first. The significant-implementation contribution hold remains in effect pending adoption of the licensing/contribution package and explicit maintainer authorization.
+Research findings, test proposals, architectural feedback, and documented compatibility evidence are welcome. Read [CONTRIBUTING.md](CONTRIBUTING.md) first. The licensing/contribution policy is adopted; the significant-implementation contribution hold remains until separate explicit maintainer authorization.
 
 For sensitive security concerns, see [SECURITY.md](SECURITY.md).
 
@@ -117,6 +117,6 @@ For sensitive security concerns, see [SECURITY.md](SECURITY.md).
 
 The owner selected **MIT for original code, documentation, schemas and examples**, and **reserved rights for original artwork and sounds** with explicit gameplay, screenshot/video and official-release modpack permissions. Independent community scripts and behavior packs remain under their creators' chosen terms.
 
-See [LICENSE](LICENSE), [asset permissions](ASSET_LICENSE.md), the [license map and inventory](docs/licensing.md), and [proposed ADR-0004](docs/decisions/0004-code-and-asset-licensing.md). The selected public copyright credit is **superdusto**. MIT requires preservation of its copyright/license notices; it does not require prominent public credit or patches to be submitted upstream.
+See [LICENSE](LICENSE), [asset permissions](ASSET_LICENSE.md), the [license map and inventory](docs/licensing.md), and [accepted ADR-0004](docs/decisions/0004-code-and-asset-licensing.md). The selected public copyright credit is **superdusto**. MIT requires preservation of its copyright/license notices; it does not require prominent public credit or patches to be submitted upstream.
 
-Published license grants apply to the copies they accompany. ADR-0004's proposed status tracks pending maintainer adoption of the final reviewed policy; it does not suspend those grants. The separate contribution hold concerns acceptance of significant new submissions. Original reserved assets carry the asset-specific notice rather than the root MIT terms; third-party material keeps its own terms.
+Published license grants apply to the copies they accompany. The owner [approved the final policy revision](https://github.com/superdusto/modular-ai-robotics/pull/20#pullrequestreview-5677986426) in PR #20 on 2026-10-28. The separate contribution hold concerns acceptance of significant new submissions and remains in place. Original reserved assets carry the asset-specific notice rather than the root MIT terms; third-party material keeps its own terms.
