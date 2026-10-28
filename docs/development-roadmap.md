@@ -5,10 +5,10 @@ No implementation has begun. Stages are gated on evidence and verified behavior 
 ## Stage 0 — Technical choices
 - **Accepted:** Minecraft Java 26.1.2, NeoForge and JDK 25 ([ADR-0001](decisions/0001-initial-platform.md)). Verify and pin the exact NeoForge/Gradle setup when scaffolding.
 - **Accepted:** Standalone core with no required third-party content mods ([ADR-0002](decisions/0002-standalone-core-optional-integrations.md)); evaluate optional adapters to compatible external machines.
-- Select a license after checking intended dependencies and asset distribution.
+- Adopt the [owner-selected MIT code / reserved-asset package](decisions/0004-code-and-asset-licensing.md) after rights review, and record explicit authorization before significant implementation contributions.
 - Document security and action-permission model.
 
-**Exit:** Platform and standalone architecture accepted. Remaining: toolchain pins, license, action-permission design and optional adapter priorities.
+**Exit:** Platform and standalone architecture accepted. Remaining: toolchain pins, licensing/contribution adoption and authorization, action-permission design and optional adapter priorities.
 
 ## Stage 1 — Persistent robot foundation
 One **mod-owned** ground robot, owner, home/dock, inventory, energy, safe navigation, and save/load identity without any other content mod.
