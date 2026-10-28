@@ -46,9 +46,11 @@ The owner wants credit for their work without controlling independently written 
 
 Publish the authentic [MIT grant](../../LICENSE) for original MAR code, documentation, build tools, tests, schemas, functional definitions and examples. Apply the [asset notice](../../ASSET_LICENSE.md) to original artwork, robot models, textures, icons, sounds and logo artwork, with explicit gameplay, screenshot/video and official-release modpack permissions. Maintain the [asset inventory](../licensing.md#reserved-asset-inventory); third-party material retains its own applicable terms.
 
-Independent packs remain under their creators' chosen licenses. Code forks may retain MIT-covered material with its notices, but need replacement art or permission for reserved assets. No copyright assignment, exclusive relicensing right, mandatory DCO process or compatibility-intake program is adopted by this proposal.
+Independent packs remain under their creators' chosen licenses. Code forks may retain MIT-covered material with its notices, but need replacement art or permission for reserved assets. No copyright assignment, exclusive relicensing right, mandatory DCO process, separate CLA workflow or compatibility-intake program is adopted by this proposal.
 
-The proposed contribution procedure uses inbound terms matching the affected material and an express human rights declaration for the accepted revision. The owner separately confirmed authority over the existing original material and authorized publishing the reviewed package as a draft PR. Significant implementation submissions still require explicit authorization after adoption of the detailed package.
+The proposed contribution procedure uses MIT inbound terms for covered material and a separate, express, nonexclusive maintainer grant for contributed reserved assets. The grant covers incorporation, reproduction, adaptation, publication in current/future MAR releases and development materials, and authorization of the public uses under the asset notice at the reviewed revision. Contributors retain copyright; broader asset permissions, unrelated-project use or MIT relicensing require separate permission. Record the express grant and applicable policy/notice revision with each asset; an authority statement alone is insufficient.
+
+An express human rights declaration remains required for the accepted revision. The owner separately confirmed authority over the existing original material and authorized publishing the prepared package as a draft PR. That existing-material confirmation is not assent on behalf of future asset contributors. Significant implementation submissions still require explicit authorization after adoption of the detailed package.
 
 ## Alternatives
 
@@ -63,7 +65,7 @@ Reusers must preserve the MIT notices for covered material, but may keep their m
 
 ## Evidence and uncertainty
 
-C1 is supported by the [MIT text](https://spdx.org/licenses/MIT.txt). [Create's inspected license](https://github.com/Creators-of-Create/Create/blob/mc1.21.1/dev/LICENSE.md) illustrates separate code/asset treatment; MAR's explicit asset permissions are project-specific.
+C1 is supported by the [MIT text](https://spdx.org/licenses/MIT.txt). [Create's inspected license](https://github.com/Creators-of-Create/Create/blob/mc1.21.1/dev/LICENSE.md) illustrates separate code/asset treatment; MAR's explicit asset permissions are project-specific. The [Copyright Office's description of reproduction, derivative-work, distribution, display and performance rights](https://www.copyright.gov/what-is-copyright/) informs the distinct maintainer grant; public-use permissions for an existing release do not replace contributor authorization to incorporate and adapt assets.
 
 The owner selected the direction in private project chat on 2026-10-27, replying "This seems fair" to the scoped proposal, and selected "superdusto" for public credit. After being asked to confirm authority to license the existing original MAR material and authorize publication of reviewed commit `2b5090b78495aae1da2aadf0e615843ec636efa6` as a draft PR, the owner replied: "I am the one designing it so yes." No third-party exception was identified in that reply; this does not establish that no exception exists.
 
@@ -71,7 +73,7 @@ This is an agent-authored record of express private owner confirmation, not a Gi
 
 ## Verification plan
 
-Compare the MIT body with the authoritative text, changing only the year and copyright holder. Inspect the complete proposed file scope, rights/provenance exceptions, asset permissions and contribution declaration. Retain the owner authority/publication confirmation recorded above, resolve identified rights exceptions, and obtain the detailed-package adoption decision before lifting the contribution hold. Run documentation links, Decision Gate tests and current/history checks against the trusted base.
+Compare the MIT body with the authoritative text, changing only the year and copyright holder. Inspect the complete proposed file scope, rights/provenance exceptions, public asset permissions, separate maintainer grant and express contribution declaration. Before accepting a contributed asset, verify its grant record and agreed policy/notice revision; no assets are present yet. Retain the owner authority/publication confirmation recorded above, resolve identified rights exceptions, and obtain the detailed-package adoption decision before lifting the contribution hold. Run documentation links, Decision Gate tests and current/history checks against the trusted base.
 
 Keep verification_state at not_run until the declared review and evidence requirements are satisfied. Passing mechanical documentation checks alone does not complete the rights review, lift the contribution hold or verify Minecraft behavior.
 

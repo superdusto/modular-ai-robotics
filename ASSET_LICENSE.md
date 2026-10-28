@@ -16,6 +16,10 @@ An official release is a release published by the project maintainer through thi
 
 No general permission is granted to extract, modify, port or repurpose the reserved asset files in another project, including a code fork, beyond the permitted uses above. Obtain permission from the relevant rights holder for those uses. MIT-licensed code may be forked and redistributed under its own terms with replacement artwork; the asset restrictions do not narrow the [MIT code grant](LICENSE).
 
+## Contributed assets
+
+Before incorporating a contributed reserved asset, maintainers must obtain the rights holder's express [reserved-asset contribution grant](CONTRIBUTING.md#reserved-asset-contribution-grant-proposed). That grant separately authorizes incorporation, adaptation and publication in MAR and offering the public permissions in this notice at the reviewed revision. The public-use permissions above do not replace that grant. Contributors retain ownership and applicable copyright credit.
+
 ## Scope and other material
 
 Functional definitions, schemas, example scripts, example behavior packs and documentation are covered by the MIT grant rather than this asset notice unless they actually incorporate separately identified reserved or third-party material. Independently authored community work remains under its creator's chosen terms.
