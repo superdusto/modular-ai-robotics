@@ -20,3 +20,9 @@ A battery/dock model can motivate useful logistics and recovery, but its exact v
 
 ## Prototype
 Start with one ground courier; add a mining module only after item transport works reliably.
+
+## Appearance and graphics packs
+
+The owner selected a [compact bipedal utility scout reference](visual-design/compact-utility-scout-v0.1.0/README.md) for one robot and supplied [segmented modular companion](visual-design/segmented-modular-companion-v0.1.0/README.md) and [hovering utility drone](visual-design/hover-utility-drone-v0.1.0/README.md) concepts. These appearance references do not select every pictured capability, final names or the first courier's final chassis.
+
+The planned graphics offering has at least Low, Medium and High packs, with Ultra optional and aiming toward the supplied references' finer mechanical detail. The [graphics pack plan](visual-design/graphics-quality-tiers-v0.1.0.md) proposes consistent gameplay and recognizable robot identities across tiers, with geometry, textures and decorative effects scaled together. Packaging, renderer support, performance budgets and implementation remain later decisions.

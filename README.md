@@ -40,6 +40,8 @@ Robots should select work from their goals and available capabilities, rather th
 
 These are **concepts**, not currently implemented features.
 
+See the [robot visual references](docs/visual-design/README.md) for the selected compact utility robot appearance and two additional chassis concepts. The planned graphics offering includes Low, Medium and High, with optional Ultra detail; the [graphics pack plan](docs/visual-design/graphics-quality-tiers-v0.1.0.md) separates those owner-selected goals from proposed rendering details.
+
 ## Proposed architecture
 
 ```text
