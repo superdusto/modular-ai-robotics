@@ -44,6 +44,16 @@ Before accepting a reserved asset, add its exact repository path, copyright hold
 
 Third-party materials must carry their own notices and permissions; do not list them as original MAR-owned work. Package licenses and notices with any release containing covered material. Exact NeoForge metadata, download-channel setup and release auditing belong to the future build/release work.
 
+## Proposed reference artwork intake
+
+Three owner-supplied robot concept sheets are proposed for design review. They are not yet recorded as cleared original MAR assets; the owner reports that ChatGPT supplied these options during pet creation, with a thread capture to follow. Submission credit is superdusto; applicable generation-tool/output terms and express maintainer grant remain pending. Their [directory notice](visual-design/NOTICE.md) excludes the JPEGs from the root MIT grant without claiming ownership. Before acceptance, resolve the rights record and move or cross-reference each entry into the appropriate original or third-party asset scope. No human assent is supplied by this inventory.
+
+| Repository path | Supplied bytes SHA-256 | Credit and permission record |
+| --- | --- | --- |
+| `docs/visual-design/compact-utility-scout-v0.1.0/reference.jpg` | `44741323c44b43a70fb40a5e595c0f10e2f208d27ee56a84f4d7826a9d2d5f20` | Supplied by superdusto; owner-reported ChatGPT pet-creation option; capture, terms review and grant pending |
+| `docs/visual-design/segmented-modular-companion-v0.1.0/reference.jpg` | `1ff6daf33198139bc42cbfa6d7d500edf7c3c3883e3e799225d089d5375d9a19` | Supplied by superdusto; owner-reported ChatGPT pet-creation option; capture, terms review and grant pending |
+| `docs/visual-design/hover-utility-drone-v0.1.0/reference.jpg` | `0442262f91a9c5037fae1b848dc50240818c3c16b6f218dd53ac617739f9f198` | Supplied by superdusto; owner-reported ChatGPT pet-creation option; capture, terms review and grant pending |
+
 ## Contribution and adoption checks
 
 The [contribution procedure](../CONTRIBUTING.md#contribution-rights) requires MIT inbound terms for covered material, a separate [nonexclusive maintainer grant for contributed reserved assets](../CONTRIBUTING.md#reserved-asset-contribution-grant), an express human rights declaration tied to the reviewed revision, and separate checks of generation-tool terms and third-party provenance. It does not adopt mandatory DCO, a separate CLA workflow or copyright assignment.
